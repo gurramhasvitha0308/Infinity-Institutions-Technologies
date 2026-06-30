@@ -1,0 +1,5586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Infinity Institutions and Technologies Academy | Shape Your Digital Future</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700;900&family=JetBrains+Mono&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    /* ==========================================
+       1. DESIGN SYSTEM & VARIABLES (SKETCHMORPHISM)
+       ========================================== */
+    :root {
+      --bg-color: #faf9f6;        /* Light Cream/Off-white */
+      --card-bg: #ffffff;
+      --card-border: #1a1a1a;
+      
+      /* Hand-drawn Highlighter Accent Colors */
+      --primary-accent: #00bcd4;    /* Cyan Highlight */
+      --secondary-accent: #e91e63;  /* Magenta Highlight */
+      --yellow-highlight: #ffeb3b;  /* Yellow Marker */
+      --green-highlight: #8bc34a;   /* Green Marker */
+      --danger-accent: #f44336;     /* Red Ink */
+      
+      --text-color: #1a1a1a;        /* Black Charcoal */
+      --text-muted: #555555;
+      
+      /* Straight Professional Typography */
+      --font-display: 'Space Grotesk', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      
+      /* Hard offset borders instead of soft neon shadows */
+      --sketch-shadow: 4px 4px 0px #1a1a1a;
+      --sketch-shadow-hover: 7px 7px 0px #1a1a1a;
+      --sketch-shadow-sm: 2px 2px 0px #1a1a1a;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      /* Subtle CSS brick wall background texture */
+      background-image: 
+        linear-gradient(90deg, rgba(26, 26, 26, 0.02) 2px, transparent 2px),
+        linear-gradient(0deg, rgba(26, 26, 26, 0.02) 2px, transparent 2px),
+        linear-gradient(90deg, rgba(26, 26, 26, 0.02) 2px, transparent 2px),
+        linear-gradient(0deg, rgba(26, 26, 26, 0.02) 2px, transparent 2px);
+      background-size: 100px 50px;
+      background-position: 0 0, 0 0, 50px 25px, 50px 25px;
+      color: var(--text-color);
+      font-family: var(--font-body);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* Sketch Background Elements */
+    .sketch-doodle {
+      position: absolute;
+      color: rgba(26, 26, 26, 0.04);
+      pointer-events: none;
+      z-index: 0;
+      transition: transform 0.3s;
+    }
+
+    /* Selection Styles */
+    ::selection {
+      background: var(--yellow-highlight);
+      color: #000;
+    }
+
+    /* Scrollbars */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #faf9f6;
+      border-left: 2px solid #1a1a1a;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #ffffff;
+      border: 2px solid #1a1a1a;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--yellow-highlight);
+    }
+
+    /* Section Headings with Sketch Border and Marker Highlights */
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+      position: relative;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      font-weight: 900;
+      display: inline-block;
+      color: #1a1a1a;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-title::before {
+      content: '';
+      position: absolute;
+      left: -8px;
+      right: -8px;
+      bottom: 6px;
+      height: 35%;
+      background: var(--yellow-highlight);
+      z-index: -1;
+      transform: rotate(-1deg);
+      border-radius: 4px;
+      opacity: 0.8;
+    }
+
+    .title-magenta::before {
+      background: var(--secondary-accent);
+      opacity: 0.4;
+    }
+
+    .title-cyan::before {
+      background: var(--primary-accent);
+      opacity: 0.4;
+    }
+
+    .sketch-divider {
+      border-bottom: 2px dashed #1a1a1a;
+      width: 150px;
+      margin: 0.5rem auto 0 auto;
+      position: relative;
+    }
+
+    .sketch-divider::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 30px;
+      right: 30px;
+      border-bottom: 1.5px solid #1a1a1a;
+    }
+
+    /* Cards Global */
+    .sketch-card {
+      background-color: var(--card-bg);
+      border: 2px solid var(--card-border);
+      border-radius: 8px 12px 6px 10px / 10px 6px 12px 8px; /* Hand-drawn look */
+      box-shadow: var(--sketch-shadow);
+      padding: 2.5rem 2rem;
+      transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .sketch-card:hover {
+      transform: translate(-3px, -3px);
+      box-shadow: var(--sketch-shadow-hover);
+    }
+
+    /* Buttons Global */
+    .btn-sketch {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      background: #ffffff;
+      border: 2px solid #1a1a1a;
+      color: #1a1a1a;
+      font-family: var(--font-display);
+      font-weight: 700;
+      padding: 0.9rem 2rem;
+      border-radius: 6px 8px 5px 7px / 7px 5px 8px 6px;
+      cursor: pointer;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: all 0.15s ease-in-out;
+      box-shadow: var(--sketch-shadow-sm);
+    }
+
+    .btn-sketch:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: var(--sketch-shadow);
+    }
+
+    .btn-sketch:active {
+      transform: translate(2px, 2px);
+      box-shadow: 0 0 0 transparent;
+    }
+
+    .btn-sketch-cyan {
+      background-color: var(--primary-accent);
+    }
+    .btn-sketch-magenta {
+      background-color: var(--secondary-accent);
+      color: #ffffff;
+    }
+    .btn-sketch-yellow {
+      background-color: var(--yellow-highlight);
+    }
+
+    /* Common Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    section {
+      padding: 6rem 0;
+      position: relative;
+    }
+
+    /* Scroll animations classes */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ==========================================
+       2. TOP PROMOTIONAL AD BANNER
+       ========================================== */
+    .top-promo-banner {
+      background: #ffffff;
+      color: #1a1a1a;
+      border-bottom: 2px solid #1a1a1a;
+      font-weight: 700;
+      padding: 0.6rem 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      z-index: 1000;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 0.5px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      animation: bannerSlideIn 0.4s ease-out;
+      text-align: center;
+    }
+
+    @keyframes bannerSlideIn {
+      from { transform: translateY(-100%); }
+      to { transform: translateY(0); }
+    }
+
+    .top-promo-banner p {
+      margin-right: 2rem;
+    }
+
+    .top-promo-banner .close-banner {
+      position: absolute;
+      right: 1.5rem;
+      background: transparent;
+      border: none;
+      color: #1a1a1a;
+      font-size: 1.2rem;
+      font-weight: bold;
+      cursor: pointer;
+      padding: 0.2rem;
+    }
+
+    .top-promo-banner.hidden {
+      display: none;
+    }
+
+    /* ==========================================
+       3. NAVIGATION BAR
+       ========================================== */
+    header {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      background: rgba(250, 249, 246, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 2px solid #1a1a1a;
+      z-index: 999;
+      transition: all 0.3s;
+    }
+
+    header.scrolled {
+      padding: 0.3rem 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 1.6rem;
+      color: #1a1a1a;
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+
+    .logo span {
+      background: var(--yellow-highlight);
+      padding: 0.1rem 0.4rem;
+      border-radius: 4px;
+      border: 1.5px solid #1a1a1a;
+      margin-left: 0.2rem;
+      font-size: 1.3rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.8rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 600;
+      transition: all 0.2s;
+      position: relative;
+      padding: 0.2rem 0;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #1a1a1a;
+      transition: width 0.25s ease;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: #000;
+    }
+
+    /* Mobile Hamburger Menu */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 6px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      z-index: 1001;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 25px;
+      height: 2.5px;
+      background: var(--text-color);
+      border-radius: 2px;
+      transition: all 0.25s;
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: translateY(8px) rotate(45deg);
+    }
+
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+      transform: translateY(-8px) rotate(-45deg);
+    }
+
+    /* Mobile Drawer */
+    .mobile-drawer {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 280px;
+      height: 100vh;
+      background: var(--bg-color);
+      box-shadow: -5px 0 20px rgba(0,0,0,0.1);
+      z-index: 998;
+      display: flex;
+      flex-direction: column;
+      padding: 6rem 2rem 2rem 2rem;
+      gap: 1.5rem;
+      transition: right 0.35s cubic-bezier(0.77, 0, 0.175, 1);
+      border-left: 2px solid #1a1a1a;
+    }
+
+    .mobile-drawer.active {
+      right: 0;
+    }
+
+    .mobile-drawer a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-size: 1.15rem;
+      font-weight: 600;
+      border-bottom: 1.5px solid rgba(0,0,0,0.06);
+      padding-bottom: 0.6rem;
+      transition: all 0.2s;
+    }
+
+    .mobile-drawer a:hover {
+      padding-left: 8px;
+      border-bottom-color: #1a1a1a;
+      color: #000;
+    }
+
+    /* ==========================================
+       4. HERO SECTION
+       ========================================== */
+    .hero-section {
+      height: calc(100vh - 75px);
+      min-height: 580px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      border-bottom: 2px solid #1a1a1a;
+    }
+
+    #hero-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      text-align: center;
+      max-width: 900px;
+      padding: 0 2rem;
+      z-index: 2;
+    }
+
+    /* Logo Hero Container (Sketch Infinity Logo) */
+    .logo-hero-container {
+      margin-bottom: 2.2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .sketch-infinity-wrapper {
+      position: relative;
+      font-size: 4.8rem;
+      color: #1a1a1a;
+      display: inline-block;
+      line-height: 1;
+      margin-bottom: 0.8rem;
+    }
+
+    .crown-doodle {
+      position: absolute;
+      top: -1.8rem;
+      left: 50%;
+      transform: translateX(-50%) rotate(-6deg);
+      font-size: 2rem;
+      color: #ffb300; /* Yellow crown */
+      filter: drop-shadow(1.5px 1.5px 0px #1a1a1a);
+    }
+
+    .infinity-loop {
+      filter: drop-shadow(3px 3px 0px var(--secondary-accent));
+      display: inline-block;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 3.2rem;
+      text-transform: uppercase;
+      letter-spacing: -1px;
+      color: #1a1a1a;
+      line-height: 1.15;
+      text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.04);
+    }
+
+    .subtitle-badge {
+      background: #1a1a1a;
+      color: #faf9f6;
+      font-family: var(--font-display);
+      font-weight: 700;
+      padding: 0.2rem 1.4rem;
+      font-size: 1rem;
+      letter-spacing: 3px;
+      transform: rotate(-1.5deg);
+      display: inline-block;
+      margin-top: 0.6rem;
+      border-radius: 4px;
+    }
+
+    .hero-tagline-container {
+      min-height: 2.2rem;
+      margin-bottom: 2.8rem;
+    }
+
+    .hero-tagline {
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    .hero-tagline span {
+      border-right: 2px solid #1a1a1a;
+      animation: cursorBlink 0.75s step-end infinite;
+    }
+
+    @keyframes cursorBlink {
+      from, to { border-color: transparent }
+      50% { border-color: #1a1a1a; }
+    }
+
+    .hero-btn-wrap {
+      display: flex;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+
+    .hero-cta {
+      font-size: 1.15rem;
+      padding: 1.1rem 2.8rem;
+      font-weight: 800;
+      border-radius: 6px;
+      animation: pulseButton 2.5s infinite ease-in-out;
+    }
+
+    @keyframes pulseButton {
+      0%, 100% { transform: scale(1); box-shadow: var(--sketch-shadow-sm); }
+      50% { transform: scale(1.03); box-shadow: var(--sketch-shadow); }
+    }
+
+    /* Scrolling Ticker */
+    .hero-ticker {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #ffffff;
+      border-top: 2px solid #1a1a1a;
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 0.6rem 0;
+      z-index: 5;
+    }
+
+    .ticker-content {
+      display: inline-block;
+      animation: tickerRun 25s linear infinite;
+    }
+
+    .ticker-content span {
+      display: inline-block;
+      padding: 0 2.2rem;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #1a1a1a;
+    }
+
+    .ticker-content span::after {
+      content: '•';
+      margin-left: 2.2rem;
+      color: var(--secondary-accent);
+    }
+
+    @keyframes tickerRun {
+      0% { transform: translate3d(0, 0, 0); }
+      100% { transform: translate3d(-50%, 0, 0); }
+    }
+
+    /* ==========================================
+       5. COURSES SECTION
+       ========================================== */
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.5rem;
+      margin-top: 2rem;
+    }
+
+    .course-card-icon {
+      font-size: 2.4rem;
+      color: #1a1a1a;
+      margin-bottom: 1.2rem;
+      width: 55px;
+      height: 55px;
+      background: var(--yellow-highlight);
+      border: 2px solid #1a1a1a;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 2px 2px 0px #1a1a1a;
+      transition: transform 0.3s;
+    }
+
+    .course-card:nth-child(2n) .course-card-icon {
+      background: var(--primary-accent);
+    }
+
+    .course-card:nth-child(3n) .course-card-icon {
+      background: var(--secondary-accent);
+      color: #fff;
+    }
+
+    .course-card:hover .course-card-icon {
+      transform: scale(1.15) rotate(8deg);
+    }
+
+    .course-card-title {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+      color: #1a1a1a;
+    }
+
+    .course-card-desc {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 1.8rem;
+      flex-grow: 1;
+    }
+
+    .course-card-btn {
+      align-self: flex-start;
+      margin-top: auto;
+      font-size: 0.85rem;
+      padding: 0.5rem 1.2rem;
+    }
+
+    /* ==========================================
+       6. EVENTS SECTION
+       ========================================== */
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .event-card {
+      background: #ffffff;
+      border: 2px solid #1a1a1a;
+      border-radius: 8px;
+      box-shadow: var(--sketch-shadow-sm);
+      padding: 1.8rem;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.25s;
+    }
+
+    .event-card:hover {
+      box-shadow: var(--sketch-shadow);
+      transform: translate(-2px, -2px);
+    }
+
+    .event-tag {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      padding: 0.25rem 0.75rem;
+      border: 1.5px solid #1a1a1a;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      background: var(--yellow-highlight);
+    }
+
+    .event-date {
+      color: var(--secondary-accent);
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      margin-bottom: 0.4rem;
+      font-weight: bold;
+    }
+
+    .event-title {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+      color: #1a1a1a;
+    }
+
+    .event-desc {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    /* ==========================================
+       7. GALLERY SECTION
+       ========================================== */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .gallery-item {
+      position: relative;
+      border-radius: 6px;
+      overflow: hidden;
+      cursor: pointer;
+      aspect-ratio: 4/3;
+      border: 2px solid #1a1a1a;
+      box-shadow: var(--sketch-shadow-sm);
+      transition: all 0.3s ease;
+    }
+
+    .gallery-item img,
+    .gallery-placeholder {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .gallery-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #1a1a1a;
+      font-weight: 700;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+    }
+
+    .gallery-item:hover {
+      box-shadow: var(--sketch-shadow);
+      transform: translate(-2px, -2px);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.06);
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(250,249,246,0.92);
+      border-top: 1.5px solid #1a1a1a;
+      opacity: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 1.2rem;
+      transition: opacity 0.25s;
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      opacity: 1;
+    }
+
+    .gallery-overlay h4 {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      transform: translateY(10px);
+      transition: transform 0.25s ease;
+    }
+
+    .gallery-item:hover .gallery-overlay h4 {
+      transform: translateY(0);
+    }
+
+    /* Lightbox Modal */
+    .lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(250, 249, 246, 0.97);
+      z-index: 1002;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+      border: 4px solid #1a1a1a;
+    }
+
+    .lightbox.active {
+      display: flex;
+      opacity: 1;
+    }
+
+    .lightbox-content {
+      max-width: 80%;
+      max-height: 80vh;
+      position: relative;
+    }
+
+    .lightbox-img,
+    .lightbox-placeholder {
+      max-width: 100%;
+      max-height: 75vh;
+      object-fit: contain;
+      border: 3px solid #1a1a1a;
+      border-radius: 4px;
+      box-shadow: var(--sketch-shadow);
+    }
+
+    .lightbox-placeholder {
+      width: 750px;
+      height: 480px;
+      max-width: 90vw;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-transform: uppercase;
+      font-size: 1.6rem;
+      font-weight: 700;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: -45px;
+      right: 0;
+      color: #1a1a1a;
+      font-size: 2.2rem;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+    }
+
+    .lightbox-close:hover {
+      color: var(--secondary-accent);
+    }
+
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #ffffff;
+      border: 2px solid #1a1a1a;
+      color: #1a1a1a;
+      font-size: 2rem;
+      width: 45px;
+      height: 45px;
+      cursor: pointer;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+      box-shadow: var(--sketch-shadow-sm);
+    }
+
+    .lightbox-nav:hover {
+      background: var(--yellow-highlight);
+      transform: translateY(-50%) scale(1.05);
+    }
+
+    .lightbox-prev {
+      left: -65px;
+    }
+
+    .lightbox-next {
+      right: -65px;
+    }
+
+    /* ==========================================
+       8. QUIZ SECTION
+       ========================================== */
+    .quiz-container {
+      max-width: 700px;
+      margin: 2rem auto 0 auto;
+      background: #ffffff;
+      border: 2.5px solid #1a1a1a;
+      border-radius: 12px;
+      padding: 3rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--sketch-shadow);
+      display: none;
+    }
+
+    .quiz-container.active {
+      display: block;
+    }
+
+    .quiz-intro {
+      text-align: center;
+    }
+
+    .quiz-intro i {
+      font-size: 3.5rem;
+      color: #1a1a1a;
+      margin-bottom: 1.2rem;
+      display: inline-block;
+    }
+
+    .quiz-intro h3 {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .quiz-intro p {
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      font-size: 1.05rem;
+    }
+
+    /* Quiz Gameplay */
+    .quiz-gameplay {
+      display: none;
+    }
+
+    .quiz-progress-bar-container {
+      width: 100%;
+      height: 8px;
+      background: #f0eee8;
+      border: 2px solid #1a1a1a;
+      border-radius: 4px;
+      margin-bottom: 2rem;
+      overflow: hidden;
+    }
+
+    .quiz-progress-bar {
+      height: 100%;
+      width: 0%;
+      background: var(--yellow-highlight);
+      transition: width 0.3s ease;
+    }
+
+    .quiz-meta {
+      display: flex;
+      justify-content: space-between;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      font-family: var(--font-mono);
+      margin-bottom: 1rem;
+    }
+
+    .quiz-question-wrap {
+      min-height: auto;
+      padding: 1rem 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .quiz-question {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 1.8rem;
+      line-height: 1.4;
+    }
+
+    .quiz-choices {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.85rem;
+    }
+
+    .quiz-choice-btn {
+      background: #ffffff;
+      border: 2px solid #1a1a1a;
+      color: var(--text-color);
+      padding: 1rem 1.2rem;
+      border-radius: 6px;
+      text-align: left;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: var(--font-body);
+      transition: all 0.15s ease;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: var(--sketch-shadow-sm);
+      white-space: normal;
+      word-break: break-word;
+    }
+
+    .quiz-choice-btn:hover {
+      background: var(--bg-color);
+      transform: translateX(3px);
+    }
+
+    .quiz-choice-btn.selected {
+      background: #faf9f6;
+      border-color: #1a1a1a;
+    }
+
+    .quiz-choice-btn.correct {
+      background: #d4edda !important;
+      border-color: #28a745 !important;
+      color: #155724;
+    }
+
+    .quiz-choice-btn.incorrect {
+      background: #f8d7da !important;
+      border-color: #dc3545 !important;
+      color: #721c24;
+    }
+
+    .quiz-nav-btns {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 1.8rem;
+    }
+
+    /* Scorecard */
+    .quiz-scorecard {
+      display: none;
+      text-align: center;
+    }
+
+    .quiz-scorecard h3 {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .badge-wrap {
+      margin: 1.2rem 0;
+    }
+
+    .quiz-badge {
+      display: inline-block;
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      padding: 0.5rem 1.8rem;
+      border: 2px solid #1a1a1a;
+      border-radius: 4px;
+      transform: rotate(-1deg);
+      text-transform: uppercase;
+      box-shadow: var(--sketch-shadow-sm);
+    }
+
+    .badge-beginner { background: #e0e0e0; }
+    .badge-star { background: var(--primary-accent); }
+    .badge-pro { background: var(--secondary-accent); color: #fff; }
+    .badge-scholar { background: var(--yellow-highlight); }
+
+    .quiz-score-val {
+      font-family: var(--font-mono);
+      font-size: 3rem;
+      font-weight: 800;
+      color: #1a1a1a;
+      margin: 0.8rem 0;
+    }
+
+    .quiz-message {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .quiz-scorecard-actions {
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
+    }
+
+    #confetti-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    /* ==========================================
+       9. BOOK SESSION SECTION
+       ========================================== */
+    .booking-section {
+      background: #fdfdfc;
+      position: relative;
+      border-top: 2px solid #1a1a1a;
+    }
+
+    /* Grid Background Pattern */
+    .tech-grid-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: 30px 30px;
+      background-image: 
+        linear-gradient(to right, rgba(0, 0, 0, 0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.02) 1px, transparent 1px);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .booking-container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #ffffff;
+      border: 3px solid #1a1a1a;
+      box-shadow: var(--sketch-shadow);
+      border-radius: 12px;
+      padding: 3.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .booking-form {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .form-group-full {
+      grid-column: span 2;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .form-label {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #1a1a1a;
+    }
+
+    .form-input {
+      background: #ffffff;
+      border: 2px solid #1a1a1a;
+      border-radius: 6px;
+      padding: 0.8rem 1rem;
+      color: #1a1a1a;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      transition: all 0.2s;
+    }
+
+    .form-input:focus {
+      outline: none;
+      background: #fbfbf9;
+      box-shadow: inset 2px 2px 0px rgba(0,0,0,0.05);
+    }
+
+    textarea.form-input {
+      resize: vertical;
+      min-height: 110px;
+    }
+
+    .submit-btn-wrap {
+      grid-column: span 2;
+      display: flex;
+      justify-content: center;
+      margin-top: 0.8rem;
+    }
+
+    .btn-submit {
+      width: 100%;
+      font-size: 1.05rem;
+      padding: 0.9rem 2.2rem;
+      border-radius: 30px;
+    }
+
+    .btn-submit .spinner {
+      display: none;
+      width: 20px;
+      height: 20px;
+      border: 2px solid rgba(0, 0, 0, 0.2);
+      border-top-color: #000;
+      border-radius: 50%;
+      animation: spin 1s infinite linear;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .btn-submit.loading {
+      pointer-events: none;
+      background: var(--yellow-highlight);
+    }
+
+    .btn-submit.loading .spinner {
+      display: inline-block;
+    }
+
+    .btn-submit.loading span {
+      display: none;
+    }
+
+    .btn-submit.success {
+      background: var(--green-highlight);
+      box-shadow: 2px 2px 0 #1a1a1a;
+    }
+
+    /* ==========================================
+       10. FOOTER SECTION
+       ========================================== */
+    footer {
+      background: #ffffff;
+      border-top: 2px solid #1a1a1a;
+      padding: 4rem 0 2rem 0;
+      font-family: var(--font-body);
+      position: relative;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-col h4 {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      color: #1a1a1a;
+      position: relative;
+      display: inline-block;
+    }
+
+    .footer-col h4::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 30px;
+      height: 2.5px;
+      background: #1a1a1a;
+    }
+
+    .contact-details {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 0.95rem;
+    }
+
+    .contact-item i {
+      font-size: 1.1rem;
+      color: #1a1a1a;
+      width: 20px;
+    }
+
+    .whatsapp-btn-footer {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border: 2px solid #1a1a1a;
+      background: #25d366;
+      color: #ffffff;
+      border-radius: 50%;
+      text-decoration: none;
+      font-size: 1.3rem;
+      box-shadow: var(--sketch-shadow-sm);
+      transition: all 0.2s;
+    }
+
+    .whatsapp-btn-footer:hover {
+      transform: scale(1.1) rotate(6deg);
+      box-shadow: 3px 3px 0 #1a1a1a;
+    }
+
+    /* Map column */
+    .map-container {
+      border: 2px solid #1a1a1a;
+      border-radius: 8px;
+      overflow: hidden;
+      height: 190px;
+      position: relative;
+      margin-bottom: 0.6rem;
+      box-shadow: var(--sketch-shadow-sm);
+    }
+
+    .map-container iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .map-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: #1a1a1a;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    .map-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Quick Links Column */
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      list-style: none;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: all 0.2s;
+      font-size: 0.9rem;
+      display: inline-block;
+    }
+
+    .footer-links a:hover {
+      color: #000;
+      transform: translateX(4px);
+    }
+
+    .admin-link {
+      color: #888888 !important;
+      font-size: 0.8rem !important;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+
+    .admin-link:hover {
+      color: #1a1a1a !important;
+      font-weight: bold;
+    }
+
+    /* Bottom Bar */
+    .footer-bottom {
+      border-top: 1.5px solid rgba(0,0,0,0.08);
+      padding-top: 1.8rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    /* ==========================================
+       11. ADMIN PORTAL OVERLAY & DASHBOARD
+       ========================================== */
+    .admin-portal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(250,249,246,0.96);
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      color: #1a1a1a;
+      border: 4px solid #1a1a1a;
+    }
+
+    .admin-portal.active {
+      display: flex;
+    }
+
+    /* Login Panel: Ruled Lined Notebook style background */
+    .admin-login-card {
+      background: #ffffff;
+      border: 3px double #1a1a1a;
+      box-shadow: 8px 8px 0px #1a1a1a;
+      border-radius: 12px;
+      padding: 3rem 2rem 3rem 4rem; /* Ruled margin shift */
+      width: 90%;
+      max-width: 440px;
+      text-align: center;
+      position: relative;
+      
+      /* Ruled blue line notebook paper styling */
+      background-image: linear-gradient(rgba(0, 0, 255, 0.05) 1px, transparent 1px);
+      background-size: 100% 25px;
+    }
+
+    /* Red vertical line in notebook page style */
+    .admin-login-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 3rem;
+      width: 2px;
+      background: rgba(255, 0, 0, 0.15);
+      pointer-events: none;
+    }
+
+    .admin-login-card h2 {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      color: #1a1a1a;
+      margin-bottom: 0.8rem;
+      text-transform: uppercase;
+    }
+
+    .admin-login-card p {
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      font-size: 0.9rem;
+    }
+
+    .admin-login-card .close-admin {
+      position: absolute;
+      top: 1rem;
+      right: 1.2rem;
+      font-size: 1.5rem;
+      color: #1a1a1a;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+    }
+
+    .login-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .login-error {
+      color: var(--danger-accent);
+      font-size: 0.85rem;
+      font-weight: 700;
+      display: none;
+    }
+
+    /* Full Admin Dashboard Layout */
+    .admin-dashboard {
+      width: 100%;
+      height: 100%;
+      display: none;
+      grid-template-columns: 260px 1fr;
+    }
+
+    .admin-dashboard.active {
+      display: grid;
+    }
+
+    /* Sidebar */
+    .admin-sidebar {
+      background: #ffffff;
+      border-right: 2px solid #1a1a1a;
+      display: flex;
+      flex-direction: column;
+      padding: 2rem 0;
+    }
+
+    .admin-sidebar-header {
+      padding: 0 1.5rem 1.8rem 1.5rem;
+      border-bottom: 2px solid #1a1a1a;
+      margin-bottom: 1.5rem;
+    }
+
+    .admin-sidebar-header h3 {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 900;
+    }
+
+    .admin-sidebar-header span {
+      font-size: 0.75rem;
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .admin-nav {
+      list-style: none;
+      flex-grow: 1;
+      overflow-y: auto;
+    }
+
+    .admin-nav-item {
+      padding: 0.8rem 1.5rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+
+    .admin-nav-item:hover {
+      color: #000;
+      background: rgba(0,0,0,0.02);
+    }
+
+    .admin-nav-item.active {
+      color: #000;
+      background: var(--yellow-highlight);
+      border-top: 1.5px solid #1a1a1a;
+      border-bottom: 1.5px solid #1a1a1a;
+      font-weight: 700;
+    }
+
+    .admin-logout-btn {
+      margin: 1.5rem;
+      padding: 0.75rem 1.2rem;
+      border: 2px solid #1a1a1a;
+      color: #1a1a1a;
+      background: transparent;
+      border-radius: 6px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      transition: all 0.2s;
+      box-shadow: var(--sketch-shadow-sm);
+    }
+
+    .admin-logout-btn:hover {
+      background: var(--danger-accent);
+      color: #ffffff;
+      box-shadow: 2px 2px 0px #1a1a1a;
+    }
+
+    /* Main Content Dashboard */
+    .admin-main {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      background: #fcfbf9;
+    }
+
+    .admin-main-header {
+      background: #ffffff;
+      border-bottom: 2px solid #1a1a1a;
+      padding: 1.2rem 2.2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .admin-main-header h2 {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 900;
+    }
+
+    .admin-main-header .date-display {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .admin-tab-content {
+      padding: 2.2rem;
+      flex-grow: 1;
+      overflow-y: auto;
+      display: none;
+    }
+
+    .admin-tab-content.active {
+      display: block;
+    }
+
+    /* Admin Panel Buttons */
+    .admin-btn {
+      background: #ffffff;
+      border: 2px solid #1a1a1a;
+      color: #1a1a1a;
+      padding: 0.5rem 1.1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 700;
+      transition: all 0.15s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      box-shadow: var(--sketch-shadow-sm);
+    }
+
+    .admin-btn:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 3px 3px 0px #1a1a1a;
+    }
+
+    .admin-btn:active {
+      transform: translate(1px, 1px);
+      box-shadow: 1px 1px 0px #1a1a1a;
+    }
+
+    .admin-btn-primary {
+      background: var(--yellow-highlight);
+    }
+
+    .admin-btn-danger {
+      background: #fdf2f2;
+      border-color: var(--danger-accent);
+      color: var(--danger-accent);
+    }
+    .admin-btn-danger:hover {
+      background: var(--danger-accent);
+      color: #fff;
+    }
+
+    .admin-grid-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.8rem;
+      gap: 1.2rem;
+    }
+
+    /* Analytics Summary Cards */
+    .admin-summary-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .summary-card {
+      background: #ffffff;
+      border: 2px solid #1a1a1a;
+      border-radius: 8px;
+      padding: 1.2rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: var(--sketch-shadow-sm);
+    }
+
+    .summary-card-info h4 {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.4rem;
+    }
+
+    .summary-card-info p {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      font-family: var(--font-mono);
+    }
+
+    .summary-card-icon {
+      width: 45px;
+      height: 45px;
+      border-radius: 6px;
+      border: 2px solid #1a1a1a;
+      background: var(--bg-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+    }
+
+    .summary-card:nth-child(1) .summary-card-icon { background-color: var(--green-highlight); }
+    .summary-card:nth-child(2) .summary-card-icon { background-color: var(--yellow-highlight); }
+    .summary-card:nth-child(3) .summary-card-icon { background-color: var(--primary-accent); }
+
+    /* Admin Tables */
+    .admin-table-wrap {
+      background: #ffffff;
+      border: 2px solid #1a1a1a;
+      border-radius: 8px;
+      overflow-x: auto;
+      box-shadow: var(--sketch-shadow-sm);
+    }
+
+    .admin-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.9rem;
+    }
+
+    .admin-table th {
+      background: #faf9f6;
+      padding: 0.9rem 1.2rem;
+      color: #1a1a1a;
+      font-weight: 700;
+      border-bottom: 2px solid #1a1a1a;
+    }
+
+    .admin-table td {
+      padding: 0.9rem 1.2rem;
+      border-bottom: 1.5px solid rgba(0,0,0,0.06);
+      color: var(--text-color);
+    }
+
+    .admin-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .admin-table tr:hover td {
+      background: rgba(0,0,0,0.01);
+    }
+
+    .admin-table td[contenteditable="true"]:focus {
+      outline: 2px solid #1a1a1a;
+      background: #faf9f6;
+    }
+
+    .status-badge {
+      display: inline-block;
+      padding: 0.2rem 0.5rem;
+      border: 1.5px solid #1a1a1a;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .status-active, .status-paid {
+      background: #d4edda;
+      color: #155724;
+    }
+    
+    .status-partial {
+      background: #fff3cd;
+      color: #856404;
+    }
+
+    .status-inactive, .status-pending {
+      background: #f8d7da;
+      color: #721c24;
+    }
+
+    /* Student detail stats layouts */
+    .student-detail-wrap {
+      display: grid;
+      grid-template-columns: 1.8fr 1.2fr;
+      gap: 2rem;
+    }
+
+    .student-stats-card {
+      background: #ffffff;
+      border: 2px solid #1a1a1a;
+      border-radius: 8px;
+      padding: 1.8rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      box-shadow: var(--sketch-shadow-sm);
+    }
+
+    .student-stats-card h3 {
+      margin-bottom: 1.2rem;
+      border-bottom: 2px dashed #1a1a1a;
+      padding-bottom: 0.4rem;
+      font-size: 1.2rem;
+      font-family: var(--font-display);
+    }
+
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+      align-items: center;
+    }
+
+    .stat-label {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .stat-val {
+      font-weight: bold;
+    }
+
+    .stat-val-highlight {
+      font-family: var(--font-mono);
+      font-size: 1.15rem;
+      background: var(--yellow-highlight);
+      padding: 0.1rem 0.4rem;
+      border-radius: 4px;
+      border: 1px solid #1a1a1a;
+    }
+
+    /* CSS Bar Chart */
+    .chart-container {
+      margin-top: 1.2rem;
+    }
+
+    .chart-title {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.8rem;
+    }
+
+    .chart-bars {
+      display: flex;
+      height: 100px;
+      align-items: flex-end;
+      justify-content: space-around;
+      padding-top: 0.8rem;
+      border-bottom: 2px solid #1a1a1a;
+      position: relative;
+    }
+
+    .chart-bar-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex-grow: 1;
+    }
+
+    .chart-bar {
+      width: 22px;
+      background: var(--primary-accent);
+      border: 2.5px solid #1a1a1a;
+      border-radius: 3px 3px 0 0;
+      position: relative;
+      transition: height 0.5s ease;
+      box-shadow: 2px 0 0 rgba(0,0,0,0.15);
+    }
+
+    .chart-bar::after {
+      content: attr(data-val) '%';
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: bold;
+    }
+
+    .chart-label {
+      margin-top: 0.4rem;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+    }
+
+    /* Staff cards layout */
+    .staff-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .staff-card {
+      background: #ffffff;
+      border: 2px solid #1a1a1a;
+      border-radius: 8px;
+      padding: 1.8rem;
+      text-align: center;
+      position: relative;
+      box-shadow: var(--sketch-shadow-sm);
+    }
+
+    .staff-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: 2px solid #1a1a1a;
+      background: var(--yellow-highlight);
+      color: #1a1a1a;
+      font-weight: 700;
+      font-size: 1.3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem auto;
+      text-transform: uppercase;
+      box-shadow: 2px 2px 0 #1a1a1a;
+    }
+
+    .staff-card:nth-child(2n) .staff-avatar { background-color: var(--primary-accent); }
+    .staff-card:nth-child(3n) .staff-avatar { background-color: var(--secondary-accent); color: #fff; }
+
+    .staff-name {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+    }
+
+    .staff-role {
+      color: var(--secondary-accent);
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.8rem;
+    }
+
+    .staff-contact {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 0.3rem;
+    }
+
+    .staff-status {
+      margin-top: 0.8rem;
+    }
+
+    .staff-card-actions {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 0.6rem;
+    }
+
+    /* Modal override elements */
+    .admin-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(250,249,246,0.85);
+      z-index: 10000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(4px);
+      border: 4px solid #1a1a1a;
+    }
+
+    .admin-modal.active {
+      display: flex;
+    }
+
+    .admin-modal-content {
+      background: #ffffff;
+      border: 3px solid #1a1a1a;
+      box-shadow: var(--sketch-shadow);
+      border-radius: 8px;
+      width: 95%;
+      max-width: 480px;
+      padding: 2.2rem;
+      position: relative;
+    }
+
+    .admin-modal-content h3 {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .admin-modal-close {
+      position: absolute;
+      top: 0.8rem;
+      right: 1rem;
+      font-size: 1.5rem;
+      color: var(--text-muted);
+      background: transparent;
+      border: none;
+      cursor: pointer;
+    }
+
+    .admin-form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .admin-form-group label {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #1a1a1a;
+    }
+
+    .admin-form-group input,
+    .admin-form-group select,
+    .admin-form-group textarea {
+      background: #ffffff;
+      border: 2px solid #1a1a1a;
+      border-radius: 4px;
+      padding: 0.65rem 0.8rem;
+      color: #1a1a1a;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+    }
+
+    .admin-form-group input:focus,
+    .admin-form-group select:focus,
+    .admin-form-group textarea:focus {
+      outline: none;
+      background: #faf9f6;
+    }
+
+    .admin-modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.8rem;
+      margin-top: 1.2rem;
+    }
+
+    /* Thumbnail Preview */
+    .thumbnail-preview-wrap {
+      display: flex;
+      gap: 0.8rem;
+      align-items: center;
+    }
+
+    .thumbnail-preview {
+      width: 65px;
+      height: 45px;
+      border-radius: 4px;
+      background: #f0eee8;
+      border: 1.5px solid #1a1a1a;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .thumbnail-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .thumbnail-preview span {
+      font-size: 0.6rem;
+      color: var(--text-muted);
+    }
+
+    /* Filter Panel */
+    .filter-panel {
+      display: flex;
+      gap: 0.8rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .filter-panel select,
+    .filter-panel input {
+      background: #ffffff;
+      border: 2px solid #1a1a1a;
+      padding: 0.5rem 0.8rem;
+      border-radius: 4px;
+      color: #1a1a1a;
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+    }
+
+    .filter-panel input {
+      flex-grow: 1;
+    }
+
+    /* Toast Notification Manager */
+    .toast-container {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 100000;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .toast {
+      background: #ffffff;
+      border: 2px solid #1a1a1a;
+      box-shadow: 3px 3px 0px #1a1a1a;
+      color: #1a1a1a;
+      padding: 0.8rem 1.2rem;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      animation: toastSlideIn 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      min-width: 220px;
+    }
+
+    @keyframes toastSlideIn {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    .toast-success { border-left: 4px solid var(--green-highlight); }
+    .toast-error { border-left: 4px solid var(--danger-accent); }
+
+    /* Calendar Grid Styles */
+    .calendar-day-cell {
+      background: #ffffff;
+      min-height: 80px;
+      padding: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: background 0.12s;
+      position: relative;
+      border: 1px solid rgba(0,0,0,0.08);
+    }
+    .calendar-day-cell:hover {
+      background: #faf9f6;
+    }
+    .calendar-day-cell.other-month {
+      background: #f0eee8;
+      color: #888888;
+      cursor: not-allowed;
+    }
+    .calendar-day-cell.is-holiday {
+      background: var(--yellow-highlight);
+      border: 1.5px dashed #1a1a1a;
+    }
+    .calendar-day-cell.is-holiday:hover {
+      background: #fde857;
+    }
+    .calendar-day-number {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+    .calendar-holiday-label {
+      font-size: 0.65rem;
+      background: #1a1a1a;
+      color: #ffffff;
+      padding: 0.15rem 0.3rem;
+      border-radius: 3px;
+      font-weight: 700;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-top: 0.4rem;
+      display: block;
+      text-align: center;
+      max-width: 100%;
+    }
+
+    /* ==========================================
+       12. RESPONSIVENESS MEDIA QUERIES
+       ========================================== */
+    @media (max-width: 1024px) {
+      .courses-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 2.5rem;
+      }
+      .footer-col:nth-child(2) {
+        grid-column: span 2;
+      }
+    }
+
+    @media (max-width: 768px) {
+      section {
+        padding: 4rem 0;
+      }
+      .section-title {
+        font-size: 2.4rem;
+      }
+      .nav-links {
+        display: none;
+      }
+      .hamburger {
+        display: flex;
+      }
+      .hero-title {
+        font-size: 2.4rem;
+      }
+      .sketch-infinity-wrapper {
+        font-size: 3.8rem;
+      }
+      .crown-doodle {
+        top: -1.4rem;
+        font-size: 1.6rem;
+      }
+      .booking-form {
+        grid-template-columns: 1fr;
+      }
+      .form-group-full {
+        grid-column: span 1;
+      }
+      .submit-btn-wrap {
+        grid-column: span 1;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .footer-col:nth-child(2) {
+        grid-column: span 1;
+      }
+      .footer-bottom {
+        flex-direction: column;
+        gap: 0.8rem;
+        text-align: center;
+      }
+      .admin-dashboard {
+        grid-template-columns: 1fr;
+      }
+      .admin-sidebar {
+        display: none;
+      }
+      .quiz-container {
+        padding: 2rem 1.2rem;
+      }
+      .student-detail-wrap {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .courses-grid {
+        grid-template-columns: 1fr;
+      }
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-title {
+        font-size: 2rem;
+      }
+      .booking-container {
+        padding: 2rem 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sketch doodles absolutely positioned in the background -->
+  <i class="fa-solid fa-crosshairs sketch-doodle" style="top: 15%; left: 8%; transform: rotate(-15deg); font-size: 4rem;"></i>
+  <i class="fa-regular fa-lightbulb sketch-doodle" style="bottom: 12%; right: 10%; transform: rotate(20deg); font-size: 5rem;"></i>
+  <i class="fa-solid fa-laptop sketch-doodle" style="top: 25%; right: 12%; transform: rotate(12deg); font-size: 4.5rem;"></i>
+  <i class="fa-solid fa-gears sketch-doodle" style="bottom: 25%; left: 8%; transform: rotate(-10deg); font-size: 4rem;"></i>
+  <i class="fa-solid fa-arrow-trend-up sketch-doodle" style="top: 45%; left: 45%; transform: rotate(45deg); font-size: 3rem; opacity: 0.03;"></i>
+
+  <!-- Top Announcement Bar (Configured via Admin Portal) -->
+  <div id="top-ad-banner" class="top-promo-banner hidden">
+    <p id="ad-banner-text">Enrollments open for Summer Coding Bootcamps! Use code INFINITY20 for 20% off.</p>
+    <button class="close-banner" onclick="dismissBanner()">&times;</button>
+  </div>
+
+  <!-- Header Navigation -->
+  <header id="site-header">
+    <div class="nav-container">
+      <a href="#" class="logo">
+        INFINITY<span>ACADEMY</span>
+      </a>
+      
+      <ul class="nav-links">
+        <li><a href="#" class="nav-link active" data-sec="home">Home</a></li>
+        <li><a href="#courses" class="nav-link" data-sec="courses">Courses</a></li>
+        <li><a href="#events" class="nav-link" data-sec="events">Events</a></li>
+        <li><a href="#gallery" class="nav-link" data-sec="gallery">Gallery</a></li>
+        <li><a href="#quiz" class="nav-link" data-sec="quiz">Quiz</a></li>
+        <li><a href="#book-session" class="nav-link" data-sec="book-session">Book Session</a></li>
+        <li><a href="javascript:void(0)" onclick="openAdmin()" class="btn-sketch btn-sketch-yellow" style="padding: 0.35rem 0.8rem; font-size: 0.8rem;">Admin</a></li>
+      </ul>
+
+      <button class="hamburger" id="hamburger-btn" aria-label="Toggle Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-drawer" id="mobile-drawer-menu">
+    <a href="#" onclick="toggleMobileMenu()" class="nav-link" data-sec="home">Home</a>
+    <a href="#courses" onclick="toggleMobileMenu()" class="nav-link" data-sec="courses">Courses</a>
+    <a href="#events" onclick="toggleMobileMenu()" class="nav-link" data-sec="events">Events</a>
+    <a href="#gallery" onclick="toggleMobileMenu()" class="nav-link" data-sec="gallery">Gallery</a>
+    <a href="#quiz" onclick="toggleMobileMenu()" class="nav-link" data-sec="quiz">Quiz</a>
+    <a href="#book-session" onclick="toggleMobileMenu()" class="nav-link" data-sec="book-session">Book Session</a>
+    <a href="javascript:void(0)" onclick="toggleMobileMenu(); openAdmin();" style="color: var(--secondary-accent);">Admin Portal</a>
+  </div>
+
+  <!-- ==========================================
+     SECTION 1 — HERO / LANDING PAGE
+     ========================================== -->
+  <section id="home" class="hero-section">
+    <canvas id="hero-canvas"></canvas>
+    <div class="hero-content">
+      <div class="logo-hero-container">
+        <div class="sketch-infinity-wrapper">
+          <span class="crown-doodle"><i class="fa-solid fa-crown"></i></span>
+          <span class="infinity-loop"><i class="fa-solid fa-infinity"></i></span>
+        </div>
+        <h1 class="hero-title">INFINITY INSTITUTIONS AND TECHNOLOGIES</h1>
+        <div class="subtitle-badge">ACADEMY</div>
+      </div>
+      <div class="hero-tagline-container">
+        <h2 class="hero-tagline"><span id="typewriter-text"></span></h2>
+      </div>
+      <div class="hero-btn-wrap">
+        <a href="#book-session" class="btn-sketch btn-sketch-cyan hero-cta">BOOK YOUR SESSION</a>
+      </div>
+    </div>
+
+    <!-- Scrolling Ticker -->
+    <div class="hero-ticker">
+      <div class="ticker-content" id="ticker-strip">
+        <span>Enrollments Open</span>
+        <span>Limited Seats Available</span>
+        <span>Learn. Build. Launch</span>
+        <span>20+ Coding Challenges</span>
+        <span>Industry-expert Mentors</span>
+        <!-- Duplicated for seamless loop -->
+        <span>Enrollments Open</span>
+        <span>Limited Seats Available</span>
+        <span>Learn. Build. Launch</span>
+        <span>20+ Coding Challenges</span>
+        <span>Industry-expert Mentors</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+     SECTION 2 — COURSES
+     ========================================== -->
+  <section id="courses" class="reveal">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">CHOOSE YOUR PATH</h2>
+        <div class="sketch-divider"></div>
+      </div>
+      
+      <div class="courses-grid" id="courses-grid-container">
+        <!-- Courses loaded dynamically -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+     SECTION 2.5 — UPCOMING EVENTS
+     ========================================== -->
+  <section id="events" class="reveal" style="background: rgba(0,0,0,0.015); border-top: 2px solid #1a1a1a; border-bottom: 2px solid #1a1a1a;">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title title-magenta">UPCOMING WORKSHOPS</h2>
+        <div class="sketch-divider"></div>
+      </div>
+
+      <div class="events-grid" id="events-grid-container">
+        <!-- Loaded dynamically -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+     SECTION 3 — PHOTO GALLERY
+     ========================================== -->
+  <section id="gallery" class="reveal">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title title-cyan">INFINITY IN ACTION</h2>
+        <div class="sketch-divider"></div>
+      </div>
+
+      <div class="gallery-grid" id="gallery-grid-container">
+        <!-- Dynamic Photo Tiles -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox Modal -->
+  <div class="lightbox" id="lightbox-modal">
+    <div class="lightbox-content">
+      <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+      <button class="lightbox-nav lightbox-prev" onclick="navigateLightbox(-1)">&lsaquo;</button>
+      
+      <img src="" alt="Enlarged gallery photo" id="lightbox-image" class="lightbox-img" style="display:none;">
+      <div id="lightbox-placeholder-tile" class="lightbox-placeholder" style="display:none;"></div>
+      
+      <button class="lightbox-nav lightbox-next" onclick="navigateLightbox(1)">&rsaquo;</button>
+    </div>
+  </div>
+
+  <!-- ==========================================
+     SECTION 4 — QUIZ SECTION
+     ========================================== -->
+  <section id="quiz" class="reveal" style="background: rgba(0,0,0,0.01); border-top: 2px solid #1a1a1a; border-bottom: 2px solid #1a1a1a;">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">TEST YOUR TECH IQ</h2>
+        <div class="sketch-divider"></div>
+      </div>
+
+      <div class="quiz-trigger-container" id="quiz-trigger-card" style="text-align: center; margin: 2rem auto;">
+        <button onclick="startQuizEngine()" class="btn-sketch btn-sketch-magenta" style="font-size: 1.2rem; padding: 1.1rem 2.5rem;">Take a Quick Quiz!</button>
+      </div>
+
+      <div class="quiz-container" id="quiz-game-container">
+        <!-- Confetti Canvas -->
+        <canvas id="confetti-canvas"></canvas>
+
+        <!-- 1. Intro state -->
+        <div class="quiz-intro" id="quiz-intro-card">
+          <i class="fa-solid fa-graduation-cap"></i>
+          <h3>Ready to Test Your Tech IQ?</h3>
+          <p>We've prepared 8 quick multiple-choice questions across HTML, CSS, JavaScript, Python, and AI. Let's see how much you score!</p>
+          <button class="btn-sketch btn-sketch-cyan" onclick="beginQuizPlay()">Start Quiz</button>
+        </div>
+
+        <!-- 2. Gameplay state -->
+        <div class="quiz-gameplay" id="quiz-gameplay-card">
+          <div class="quiz-progress-bar-container">
+            <div class="quiz-progress-bar" id="quiz-bar"></div>
+          </div>
+          <div class="quiz-meta">
+            <span id="question-index-text">Question 1 of 8</span>
+            <span id="quiz-score-tracker">Score: 0</span>
+          </div>
+          <div class="quiz-question-wrap">
+            <h4 class="quiz-question" id="quiz-question-title">What does HTML stand for?</h4>
+            <div class="quiz-choices" id="quiz-choices-wrap">
+              <!-- Choices generated on run -->
+            </div>
+          </div>
+          <div class="quiz-nav-btns">
+            <button class="btn-sketch btn-sketch-yellow" id="quiz-next-btn" onclick="nextQuizQuestion()" disabled>Next Question &rarr;</button>
+          </div>
+        </div>
+
+        <!-- 3. Scorecard state -->
+        <div class="quiz-scorecard" id="quiz-scorecard-card">
+          <h3>Quiz Complete!</h3>
+          <div class="quiz-score-val" id="quiz-score-value">7 / 8</div>
+          <div class="badge-wrap">
+            <span class="quiz-badge" id="quiz-badge-display">Infinity Scholar</span>
+          </div>
+          <p class="quiz-message" id="quiz-motivational-msg">Absolutely brilliant! You have elite tech capabilities. Shape your future at Infinity!</p>
+          <div class="quiz-scorecard-actions">
+            <button class="btn-sketch" onclick="restartQuizEngine()">Retake Quiz</button>
+            <a href="#book-session" class="btn-sketch btn-sketch-magenta">Book a Session</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+     SECTION 5 — BOOK SESSION
+     ========================================== -->
+  <section id="book-session" class="booking-section reveal">
+    <div class="tech-grid-bg"></div>
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title title-magenta">BOOK A FREE SESSION</h2>
+        <div class="sketch-divider"></div>
+      </div>
+
+      <div class="booking-container">
+        <form class="booking-form" id="session-booking-form" onsubmit="submitBookingForm(event)">
+          <div class="form-group">
+            <label class="form-label" for="book-name">Full Name *</label>
+            <input type="text" id="book-name" class="form-input" placeholder="e.g. Alex Morgan" required>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label" for="book-phone">Phone Number *</label>
+            <input type="tel" id="book-phone" class="form-input" placeholder="e.g. +91 9999999999" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="book-email">Email Address *</label>
+            <input type="email" id="book-email" class="form-input" placeholder="name@example.com" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="book-course">Course Interested In *</label>
+            <select id="book-course" class="form-input" required>
+              <option value="" disabled selected>Select a Course</option>
+              <!-- Loaded dynamically -->
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="book-date">Preferred Date *</label>
+            <input type="date" id="book-date" class="form-input" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="book-time">Preferred Time *</label>
+            <input type="time" id="book-time" class="form-input" required>
+          </div>
+
+          <div class="form-group form-group-full">
+            <label class="form-label" for="book-message">Message (Optional)</label>
+            <textarea id="book-message" class="form-input" placeholder="Write any specific query or goals you have..."></textarea>
+          </div>
+
+          <div class="submit-btn-wrap">
+            <button type="submit" id="book-submit-btn" class="btn-sketch btn-sketch-magenta btn-submit">
+              <span>BOOK YOUR SESSION</span>
+              <div class="spinner"></div>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+     SECTION 6 — FOOTER
+     ========================================== -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Col 1: Contacts -->
+        <div class="footer-col">
+          <h4>Reach Us</h4>
+          <div class="contact-details">
+            <div class="contact-item">
+              <i class="fa-solid fa-phone"></i>
+              <span>+91 7780649938</span>
+            </div>
+            <div class="contact-item">
+              <i class="fa-solid fa-envelope"></i>
+              <span>info@infinityinstitutions.com</span>
+            </div>
+            <div class="contact-item">
+              <i class="fa-solid fa-location-dot"></i>
+              <span>Abids, Hyderabad, TS, India</span>
+            </div>
+            <div style="margin-top: 0.5rem;">
+              <a href="https://wa.me/917780649938" target="_blank" class="whatsapp-btn-footer" aria-label="WhatsApp Contact">
+                <i class="fa-brands fa-whatsapp"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Col 2: Maps Embed -->
+        <div class="footer-col">
+          <h4>Our Academy Location</h4>
+          <div class="map-container">
+            <iframe 
+              src="https://maps.google.com/maps?q=17.3850,78.4867&z=15&output=embed" 
+              allowfullscreen="" 
+              loading="lazy">
+            </iframe>
+          </div>
+          <a href="https://maps.app.goo.gl/Aq1kRbZnFAviSnUw5" target="_blank" class="map-link">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> View on Google Maps
+          </a>
+        </div>
+
+        <!-- Col 3: Quick links -->
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#courses">Courses Path</a></li>
+            <li><a href="#events">Upcoming Events</a></li>
+            <li><a href="#gallery">Infinity Gallery</a></li>
+            <li><a href="#quiz">Test IQ Quiz</a></li>
+            <li><a href="#book-session">Free Consultation</a></li>
+            <li><a class="admin-link" onclick="openAdmin()">Admin Portal (Ctrl+Shift+A)</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="footer-bottom">
+        <p>&copy; 2025 Infinity Institutions and Technologies Academy. All Rights Reserved.</p>
+        <p>Designed with Code for the Future.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================
+     ADMIN PORTAL OVERLAY CONTAINER
+     ========================================== -->
+  <div id="admin-overlay" class="admin-portal">
+    
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- 1. Password Protection Modal (Rulled notebook paper background) -->
+    <div id="admin-login" class="admin-login-card">
+      <button class="close-admin" onclick="closeAdmin()">&times;</button>
+      <h2>SECURE PORTAL</h2>
+      <p>Enter the administrative access passcode to manage the academy backend resources.</p>
+      
+      <form class="login-form" onsubmit="verifyAdminPass(event)">
+        <div style="display: flex; flex-direction: column; gap: 0.5rem; text-align: left;">
+          <label for="admin-pass" style="font-size: 0.85rem; font-weight: bold; color: var(--text-muted);">Passcode</label>
+          <input type="password" id="admin-pass" class="form-input" style="letter-spacing: 4px; text-align: center;" placeholder="••••••••" required>
+        </div>
+        <div id="login-error-msg" class="login-error">Passcode incorrect! Please check and retry.</div>
+        <button type="submit" class="btn-sketch btn-sketch-yellow" style="width: 100%; margin-top: 1rem;">Authenticate</button>
+      </form>
+    </div>
+
+    <!-- 2. Full Admin Dashboard Panel -->
+    <div id="admin-panel" class="admin-dashboard">
+      <!-- Dashboard Sidebar -->
+      <div class="admin-sidebar">
+        <div class="admin-sidebar-header">
+          <h3>INFINITY</h3>
+          <span>ADMIN DASHBOARD</span>
+        </div>
+        
+        <ul class="admin-nav">
+          <li class="admin-nav-item active" onclick="switchAdminTab('courses-manager')" data-tab="courses-manager">
+            <i class="fa-solid fa-graduation-cap"></i> Courses Manager
+          </li>
+          <li class="admin-nav-item" onclick="switchAdminTab('events-manager')" data-tab="events-manager">
+            <i class="fa-solid fa-calendar-days"></i> Events Manager
+          </li>
+          <li class="admin-nav-item" onclick="switchAdminTab('ads-manager')" data-tab="ads-manager">
+            <i class="fa-solid fa-rectangle-ad"></i> Offers Banner
+          </li>
+          <li class="admin-nav-item" onclick="switchAdminTab('students-manager')" data-tab="students-manager">
+            <i class="fa-solid fa-user-graduate"></i> Student Registry
+          </li>
+          <li class="admin-nav-item" onclick="switchAdminTab('staff-manager')" data-tab="staff-manager">
+            <i class="fa-solid fa-user-tie"></i> Staff Directory
+          </li>
+          <li class="admin-nav-item" onclick="switchAdminTab('payments-manager')" data-tab="payments-manager">
+            <i class="fa-solid fa-credit-card"></i> Payment Ledger
+          </li>
+          <li class="admin-nav-item" onclick="switchAdminTab('gallery-manager')" data-tab="gallery-manager">
+            <i class="fa-solid fa-images"></i> Gallery Manager
+          </li>
+          <li class="admin-nav-item" onclick="switchAdminTab('quiz-manager')" data-tab="quiz-manager">
+            <i class="fa-solid fa-circle-question"></i> Quiz Bank
+          </li>
+          <li class="admin-nav-item" onclick="switchAdminTab('attendance-manager')" data-tab="attendance-manager">
+            <i class="fa-solid fa-clipboard-user"></i> Daily Attendance
+          </li>
+          <li class="admin-nav-item" onclick="switchAdminTab('holidays-manager')" data-tab="holidays-manager">
+            <i class="fa-solid fa-umbrella-beach"></i> Holidays Calendar
+          </li>
+        </ul>
+
+        <button class="admin-logout-btn" onclick="logoutAdmin()">
+          <i class="fa-solid fa-right-from-bracket"></i> Logout Portal
+        </button>
+      </div>
+
+      <!-- Main Panel area -->
+      <div class="admin-main">
+        <div class="admin-main-header">
+          <h2 id="admin-main-title">Courses Manager</h2>
+          <div class="date-display" id="admin-time-display">2026-06-27 21:22</div>
+        </div>
+
+        <!-- TAB 1: Courses Manager -->
+        <div id="tab-courses-manager" class="admin-tab-content active">
+          <div class="admin-grid-top">
+            <p style="color: var(--text-muted);">Manage the active courses displayed on the public landing page. Changes update in real-time.</p>
+            <button class="admin-btn admin-btn-primary" onclick="openAddCourseModal()"><i class="fa-solid fa-plus"></i> Add Course</button>
+          </div>
+          
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th style="width: 100px;">Icon</th>
+                  <th>Course Name</th>
+                  <th>Description</th>
+                  <th style="width: 150px; text-align: center;">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="admin-courses-tbody">
+                <!-- Loaded dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- TAB 2: Events Manager -->
+        <div id="tab-events-manager" class="admin-tab-content">
+          <div class="admin-grid-top">
+            <p style="color: var(--text-muted);">Configure upcoming academy workshops, hackathons, and webinars.</p>
+            <button class="admin-btn admin-btn-primary" onclick="openAddEventModal()"><i class="fa-solid fa-plus"></i> Add Event</button>
+          </div>
+          
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Tag / Type</th>
+                  <th>Date</th>
+                  <th>Description</th>
+                  <th style="width: 150px; text-align: center;">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="admin-events-tbody">
+                <!-- Loaded dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- TAB 3: Ads Manager -->
+        <div id="tab-ads-manager" class="admin-tab-content">
+          <p style="color: var(--text-muted); margin-bottom: 2rem;">Setup and broadcast alert notifications/offers to the top promo bar on the main academy website.</p>
+          
+          <div style="background: #ffffff; padding: 2.5rem; border-radius: 8px; border: 2px solid #1a1a1a; box-shadow: var(--sketch-shadow-sm); max-width: 600px;">
+            <form onsubmit="savePromoBannerSettings(event)">
+              <div class="admin-form-group">
+                <label>Enable Banner Display</label>
+                <select id="ad-banner-active">
+                  <option value="true">Active (Visible)</option>
+                  <option value="false">Inactive (Hidden)</option>
+                </select>
+              </div>
+
+              <div class="admin-form-group">
+                <label for="ad-banner-text-input">Banner Message Text</label>
+                <input type="text" id="ad-banner-text-input" placeholder="Enter notification text here..." required>
+              </div>
+
+              <div class="admin-form-group">
+                <label for="ad-banner-theme">Banner Highlight Color</label>
+                <div style="display: flex; gap: 1rem; align-items: center;">
+                  <input type="color" id="ad-banner-theme" value="#ffeb3b" style="width: 60px; height: 40px; padding: 0.2rem; cursor: pointer;">
+                  <span style="font-size: 0.85rem; color: var(--text-muted);">Choose a highlight color for text outlines/accents.</span>
+                </div>
+              </div>
+
+              <div class="admin-form-group">
+                <label for="ad-banner-expiry">Expiry Date</label>
+                <input type="date" id="ad-banner-expiry" required>
+              </div>
+
+              <div style="margin-top: 2rem;">
+                <button type="submit" class="admin-btn admin-btn-primary" style="width: 100%; justify-content: center;">Save & Broadcast Banner</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- TAB 4: Students Manager -->
+        <div id="tab-students-manager" class="admin-tab-content">
+          <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Academy Student Profiles. Double click values directly in the table to make inline revisions.</p>
+          
+          <div class="filter-panel">
+            <input type="text" id="student-search-input" placeholder="Search by name, email, or phone..." oninput="renderStudentsTable()">
+            
+            <select id="student-filter-course" onchange="renderStudentsTable()">
+              <option value="">All Courses</option>
+              <!-- Loaded dynamically -->
+            </select>
+
+            <select id="student-filter-status" onchange="renderStudentsTable()">
+              <option value="">All Statuses</option>
+              <option value="Paid">Paid</option>
+              <option value="Partial">Partial</option>
+              <option value="Pending">Pending</option>
+            </select>
+
+            <button class="admin-btn admin-btn-primary" onclick="openAddStudentModal()"><i class="fa-solid fa-plus"></i> Add Student</button>
+          </div>
+
+          <div class="student-detail-wrap">
+            <!-- Left Side: Table -->
+            <div class="admin-table-wrap" style="height: 480px; overflow-y: auto;">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Student Name</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Course Enrolled</th>
+                    <th>Down Payment</th>
+                    <th>Payment Status</th>
+                    <th>Enrollment Date</th>
+                    <th>Notes</th>
+                    <th style="width: 80px; text-align: center;">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-students-tbody">
+                  <!-- Loaded dynamically -->
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Right Side: Individual Stats Card -->
+            <div class="student-stats-card" id="student-stats-display-card">
+              <h3>Academy Assessment</h3>
+              <p style="color: var(--text-muted); text-align: center; font-size: 0.95rem;">Select a student from the table list to inspect scorecard analytics.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 5: Staff Manager -->
+        <div id="tab-staff-manager" class="admin-tab-content">
+          <div class="admin-grid-top">
+            <p style="color: var(--text-muted);">Manage roster files for staff lecturers, administration personnel, and lab technicians.</p>
+            <button class="admin-btn admin-btn-primary" onclick="openAddStaffModal()"><i class="fa-solid fa-plus"></i> Add Staff</button>
+          </div>
+          
+          <div class="staff-grid" id="admin-staff-grid-container">
+            <!-- Loaded dynamically -->
+          </div>
+        </div>
+
+        <!-- TAB 6: Payments Manager -->
+        <div id="tab-payments-manager" class="admin-tab-content">
+          <!-- Summary indicators -->
+          <div class="admin-summary-grid">
+            <div class="summary-card">
+              <div class="summary-card-info">
+                <h4>Total Collected</h4>
+                <p id="ledger-total-collected">₹0</p>
+              </div>
+              <div class="summary-card-icon"><i class="fa-solid fa-wallet"></i></div>
+            </div>
+            
+            <div class="summary-card">
+              <div class="summary-card-info">
+                <h4>Total Outstanding</h4>
+                <p id="ledger-total-pending">₹0</p>
+              </div>
+              <div class="summary-card-icon"><i class="fa-solid fa-circle-exclamation"></i></div>
+            </div>
+
+            <div class="summary-card">
+              <div class="summary-card-info">
+                <h4>Total Enrolls</h4>
+                <p id="ledger-student-count">0</p>
+              </div>
+              <div class="summary-card-icon"><i class="fa-solid fa-users"></i></div>
+            </div>
+          </div>
+
+          <p style="color: var(--text-muted); margin-bottom: 1rem;">Transaction ledger record generated automatically from student registries. Double click student records in the registry to update fee structures.</p>
+
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Student Name</th>
+                  <th>Course Pathway</th>
+                  <th>Date Recorded</th>
+                  <th>Amount Paid (INR)</th>
+                  <th>Outstanding Balance (INR)</th>
+                  <th>Payment Status</th>
+                </tr>
+              </thead>
+              <tbody id="admin-payments-tbody">
+                <!-- Loaded dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- TAB 7: Gallery Manager -->
+        <div id="tab-gallery-manager" class="admin-tab-content">
+          <div class="admin-grid-top">
+            <p style="color: var(--text-muted);">Add image links to load real-world activities to the public grid. Seeded indicators use gradient tiles when URL fields are left blank.</p>
+            <button class="admin-btn admin-btn-primary" onclick="openAddGalleryModal()"><i class="fa-solid fa-plus"></i> Add Gallery Image</button>
+          </div>
+
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th style="width: 120px;">Preview</th>
+                  <th>Image Title</th>
+                  <th>Source URL (External Image Link)</th>
+                  <th style="width: 150px; text-align: center;">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="admin-gallery-tbody">
+                <!-- Loaded dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- TAB 8: Quiz Manager -->
+        <div id="tab-quiz-manager" class="admin-tab-content">
+          <div class="admin-grid-top">
+            <p style="color: var(--text-muted);">Manage the active bank pool of tech assessment questions. The public quiz app draws 8 items at random.</p>
+            <button class="admin-btn admin-btn-primary" onclick="openAddQuestionModal()"><i class="fa-solid fa-plus"></i> Add Question</button>
+          </div>
+
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Question Title</th>
+                  <th>Category</th>
+                  <th>Correct Answer Option</th>
+                  <th style="width: 150px; text-align: center;">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="admin-quiz-tbody">
+                <!-- Loaded dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- TAB 9: Daily Attendance Manager -->
+        <div id="tab-attendance-manager" class="admin-tab-content">
+          <div class="admin-grid-top">
+            <p style="color: var(--text-muted);">Mark daily student attendance. Select a date below to log presence, absences, or lateness.</p>
+          </div>
+          
+          <div class="filter-panel" style="align-items: center; flex-wrap: wrap;">
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <label for="attendance-date-select" style="font-weight: 700; font-size: 0.85rem;">Date:</label>
+              <input type="date" id="attendance-date-select" onchange="loadDailyAttendance()">
+            </div>
+            
+            <select id="attendance-filter-course" onchange="renderAttendanceSheetTable()">
+              <option value="">All Courses</option>
+            </select>
+            
+            <div style="display: flex; gap: 0.5rem; margin-left: auto;">
+              <button class="admin-btn admin-btn-primary" onclick="markAllAttendance('Present')">Mark All Present</button>
+              <button class="admin-btn admin-btn-danger" onclick="markAllAttendance('Absent')">Mark All Absent</button>
+            </div>
+          </div>
+
+          <div id="attendance-holiday-notice" style="display:none; background: var(--yellow-highlight); border: 2px solid #1a1a1a; padding: 1rem; border-radius: 8px; font-weight: bold; margin-bottom: 1.5rem; box-shadow: var(--sketch-shadow-sm);">
+            This date is marked as an Academy Holiday: <span id="attendance-holiday-name"></span>. Attendance logging is disabled.
+          </div>
+
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Student Name</th>
+                  <th>Course Enrolled</th>
+                  <th style="width: 320px; text-align: center;">Attendance Status</th>
+                </tr>
+              </thead>
+              <tbody id="admin-attendance-tbody">
+                <!-- Populated dynamically -->
+              </tbody>
+            </table>
+          </div>
+
+          <div style="margin-top: 1.5rem; display: flex; justify-content: flex-end;">
+            <button class="admin-btn admin-btn-primary" id="save-attendance-btn" onclick="saveDailyAttendance()"><i class="fa-solid fa-floppy-disk"></i> Save Daily Log</button>
+          </div>
+        </div>
+
+        <!-- TAB 10: Holidays Manager -->
+        <div id="tab-holidays-manager" class="admin-tab-content">
+          <div class="admin-grid-top">
+            <p style="color: var(--text-muted);">Manage academic holidays. Click dates on the calendar to add or edit holidays directly.</p>
+            <div style="display: flex; gap: 0.8rem;">
+              <button class="admin-btn" id="toggle-holiday-view-btn" onclick="toggleHolidayView()"><i class="fa-solid fa-list"></i> Switch to List View</button>
+              <button class="admin-btn admin-btn-primary" onclick="openAddHolidayModal()"><i class="fa-solid fa-plus"></i> Add Holiday</button>
+            </div>
+          </div>
+
+          <!-- Calendar View Container -->
+          <div id="holiday-calendar-view" style="background: #ffffff; border: 2px solid #1a1a1a; border-radius: 8px; padding: 1.5rem; box-shadow: var(--sketch-shadow-sm); margin-bottom: 1.5rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+              <button class="admin-btn" onclick="changeHolidayMonth(-1)">&larr; Prev</button>
+              <h3 id="holiday-calendar-month-year" style="font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; text-transform: uppercase;">June 2026</h3>
+              <button class="admin-btn" onclick="changeHolidayMonth(1)">Next &rarr;</button>
+            </div>
+            
+            <div class="calendar-grid-header" style="display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; font-weight: bold; border-bottom: 2px solid #1a1a1a; padding-bottom: 0.5rem; font-size: 0.85rem; text-transform: uppercase;">
+              <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
+            </div>
+            
+            <div id="holiday-calendar-days-grid" style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; background: #1a1a1a; border: 2px solid #1a1a1a; border-radius: 0 0 6px 6px; overflow: hidden; margin-top: 2px;">
+              <!-- Days loaded dynamically -->
+            </div>
+          </div>
+
+          <!-- List View Container (Hidden by default) -->
+          <div id="holiday-list-view" class="admin-table-wrap" style="display: none;">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Holiday Date</th>
+                  <th>Holiday Description / Name</th>
+                  <th>Category</th>
+                  <th style="width: 150px; text-align: center;">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="admin-holidays-tbody">
+                <!-- Populated dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+     ADMIN ACTION MODALS (Add/Edit modals)
+     ========================================== -->
+  <!-- 1. Course Modal -->
+  <div class="admin-modal" id="modal-course">
+    <div class="admin-modal-content">
+      <button class="admin-modal-close" onclick="closeAdminModal('modal-course')">&times;</button>
+      <h3 id="modal-course-title">Add New Course</h3>
+      <form id="form-course" onsubmit="saveCourseForm(event)">
+        <input type="hidden" id="course-form-id">
+        <div class="admin-form-group">
+          <label for="course-form-name">Course Name *</label>
+          <input type="text" id="course-form-name" required>
+        </div>
+        <div class="admin-form-group">
+          <label for="course-form-icon">Font Awesome Icon Code * (e.g. fa-brands fa-html5)</label>
+          <input type="text" id="course-form-icon" placeholder="fa-solid fa-code" required>
+        </div>
+        <div class="admin-form-group">
+          <label for="course-form-desc">Course Description *</label>
+          <textarea id="course-form-desc" required></textarea>
+        </div>
+        <div class="admin-modal-actions">
+          <button type="button" class="admin-btn" onclick="closeAdminModal('modal-course')">Cancel</button>
+          <button type="submit" class="admin-btn admin-btn-primary">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 2. Event Modal -->
+  <div class="admin-modal" id="modal-event">
+    <div class="admin-modal-content">
+      <button class="admin-modal-close" onclick="closeAdminModal('modal-event')">&times;</button>
+      <h3 id="modal-event-title">Add Upcoming Event</h3>
+      <form id="form-event" onsubmit="saveEventForm(event)">
+        <input type="hidden" id="event-form-id">
+        <div class="admin-form-group">
+          <label for="event-form-title">Event Title *</label>
+          <input type="text" id="event-form-title" required>
+        </div>
+        <div class="admin-form-group">
+          <label for="event-form-tag">Event Tag/Category * (e.g. Workshop, Seminar)</label>
+          <input type="text" id="event-form-tag" required>
+        </div>
+        <div class="admin-form-group">
+          <label for="event-form-date">Event Date *</label>
+          <input type="date" id="event-form-date" required>
+        </div>
+        <div class="admin-form-group">
+          <label for="event-form-desc">Short Description *</label>
+          <textarea id="event-form-desc" required></textarea>
+        </div>
+        <div class="admin-modal-actions">
+          <button type="button" class="admin-btn" onclick="closeAdminModal('modal-event')">Cancel</button>
+          <button type="submit" class="admin-btn admin-btn-primary">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 3. Student Modal -->
+  <div class="admin-modal" id="modal-student">
+    <div class="admin-modal-content">
+      <button class="admin-modal-close" onclick="closeAdminModal('modal-student')">&times;</button>
+      <h3 id="modal-student-title">Enroll Student Profile</h3>
+      <form id="form-student" onsubmit="saveStudentForm(event)">
+        <input type="hidden" id="student-form-id">
+        <div class="admin-form-group">
+          <label for="student-form-name">Student Full Name *</label>
+          <input type="text" id="student-form-name" required>
+        </div>
+        <div class="admin-form-group">
+          <label for="student-form-phone">Phone Number *</label>
+          <input type="tel" id="student-form-phone" required>
+        </div>
+        <div class="admin-form-group">
+          <label for="student-form-email">Email Address *</label>
+          <input type="email" id="student-form-email" required>
+        </div>
+        <div class="admin-form-group">
+          <label for="student-form-course">Enrolled Course *</label>
+          <select id="student-form-course" required></select>
+        </div>
+        <div class="admin-form-group">
+          <label for="student-form-downpayment">Down Payment Amount (INR) *</label>
+          <input type="number" id="student-form-downpayment" min="0" required>
+        </div>
+        <div class="admin-form-group">
+          <label for="student-form-totalfee">Total Fee (INR) *</label>
+          <input type="number" id="student-form-totalfee" min="0" required>
+        </div>
+        <div class="admin-form-group">
+          <label for="student-form-status">Payment Status *</label>
+          <select id="student-form-status" required>
+            <option value="Paid">Paid (Full)</option>
+            <option value="Partial">Partial</option>
+            <option value="Pending">Pending (None)</option>
+          </select>
+        </div>
+        <div class="admin-form-group">
+          <label for="student-form-performance">Initial Performance (0-100)</label>
+          <input type="number" id="student-form-performance" min="0" max="100" value="80">
+        </div>
+        <div class="admin-form-group">
+          <label for="student-form-attendance">Attendance % (0-100)</label>
+          <input type="number" id="student-form-attendance" min="0" max="100" value="95">
+        </div>
+        <div class="admin-form-group">
+          <label for="student-form-notes">Student Notes / Feedback</label>
+          <input type="text" id="student-form-notes" placeholder="Feedback...">
+        </div>
+        <div class="admin-modal-actions">
+          <button type="button" class="admin-btn" onclick="closeAdminModal('modal-student')">Cancel</button>
+          <button type="submit" class="admin-btn admin-btn-primary">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 4. Staff Modal -->
+  <div class="admin-modal" id="modal-staff">
+    <div class="admin-modal-content">
+      <button class="admin-modal-close" onclick="closeAdminModal('modal-staff')">&times;</button>
+      <h3 id="modal-staff-title">Add Staff Profile</h3>
+      <form id="form-staff" onsubmit="saveStaffForm(event)">
+        <input type="hidden" id="staff-form-id">
+        <div class="admin-form-group">
+          <label for="staff-form-name">Staff Name *</label>
+          <input type="text" id="staff-form-name" required>
+        </div>
+        <div class="admin-form-group">
+          <label for="staff-form-role">Academic/Admin Role *</label>
+          <input type="text" id="staff-form-role" placeholder="e.g. Lead Instructor" required>
+        </div>
+        <div class="admin-form-group">
+          <label for="staff-form-phone">Phone Number *</label>
+          <input type="tel" id="staff-form-phone" required>
+        </div>
+        <div class="admin-form-group">
+          <label for="staff-form-email">Email Address *</label>
+          <input type="email" id="staff-form-email" required>
+        </div>
+        <div class="admin-form-group">
+          <label for="staff-form-dept">Department *</label>
+          <input type="text" id="staff-form-dept" placeholder="e.g. Information Technology" required>
+        </div>
+        <div class="admin-form-group">
+          <label for="staff-form-joindate">Joining Date *</label>
+          <input type="date" id="staff-form-joindate" required>
+        </div>
+        <div class="admin-form-group">
+          <label for="staff-form-status">Activity Status *</label>
+          <select id="staff-form-status" required>
+            <option value="Active">Active</option>
+            <option value="Inactive">Inactive</option>
+          </select>
+        </div>
+        <div class="admin-modal-actions">
+          <button type="button" class="admin-btn" onclick="closeAdminModal('modal-staff')">Cancel</button>
+          <button type="submit" class="admin-btn admin-btn-primary">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 5. Gallery Modal -->
+  <div class="admin-modal" id="modal-gallery">
+    <div class="admin-modal-content">
+      <button class="admin-modal-close" onclick="closeAdminModal('modal-gallery')">&times;</button>
+      <h3 id="modal-gallery-title">Add Gallery Photo</h3>
+      <form id="form-gallery" onsubmit="saveGalleryForm(event)">
+        <input type="hidden" id="gallery-form-id">
+        <div class="admin-form-group">
+          <label for="gallery-form-title">Photo Label/Title *</label>
+          <input type="text" id="gallery-form-title" required>
+        </div>
+        <div class="admin-form-group">
+          <label for="gallery-form-url">Image URL (Leave empty for a modern gradient tile)</label>
+          <input type="url" id="gallery-form-url" placeholder="https://images.unsplash.com/..." oninput="updateModalGalleryPreview(this.value)">
+        </div>
+        <div class="admin-form-group">
+          <label>Preview</label>
+          <div class="thumbnail-preview-wrap">
+            <div class="thumbnail-preview" id="modal-gallery-preview-box">
+              <span>No Image</span>
+            </div>
+            <span style="font-size: 0.85rem; color: var(--text-muted);">Ensure the URL is a direct web link ending in jpg, png, etc.</span>
+          </div>
+        </div>
+        <div class="admin-modal-actions">
+          <button type="button" class="admin-btn" onclick="closeAdminModal('modal-gallery')">Cancel</button>
+          <button type="submit" class="admin-btn admin-btn-primary">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 6. Quiz Modal -->
+  <div class="admin-modal" id="modal-question">
+    <div class="admin-modal-content">
+      <button class="admin-modal-close" onclick="closeAdminModal('modal-question')">&times;</button>
+      <h3 id="modal-question-title">Edit Quiz Question</h3>
+      <form id="form-question" onsubmit="saveQuestionForm(event)">
+        <input type="hidden" id="question-form-id">
+        <div class="admin-form-group">
+          <label for="question-form-title">Question Query Text *</label>
+          <input type="text" id="question-form-title" required>
+        </div>
+        <div class="admin-form-group">
+          <label for="question-form-category">Category *</label>
+          <select id="question-form-category" required>
+            <option value="HTML">HTML</option>
+            <option value="CSS">CSS</option>
+            <option value="JavaScript">JavaScript</option>
+            <option value="Python">Python</option>
+            <option value="AI Basics">AI Basics</option>
+            <option value="General Tech">General Tech</option>
+          </select>
+        </div>
+        <div class="admin-form-group">
+          <label for="question-form-opt-0">Option A *</label>
+          <input type="text" id="question-form-opt-0" required>
+        </div>
+        <div class="admin-form-group">
+          <label for="question-form-opt-1">Option B *</label>
+          <input type="text" id="question-form-opt-1" required>
+        </div>
+        <div class="admin-form-group">
+          <label for="question-form-opt-2">Option C *</label>
+          <input type="text" id="question-form-opt-2" required>
+        </div>
+        <div class="admin-form-group">
+          <label for="question-form-opt-3">Option D *</label>
+          <input type="text" id="question-form-opt-3" required>
+        </div>
+        <div class="admin-form-group">
+          <label for="question-form-correct">Correct Option Index *</label>
+          <select id="question-form-correct" required>
+            <option value="0">Option A</option>
+            <option value="1">Option B</option>
+            <option value="2">Option C</option>
+            <option value="3">Option D</option>
+          </select>
+        </div>
+        <div class="admin-modal-actions">
+          <button type="button" class="admin-btn" onclick="closeAdminModal('modal-question')">Cancel</button>
+          <button type="submit" class="admin-btn admin-btn-primary">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Holiday Modal -->
+  <div class="admin-modal" id="modal-holiday">
+    <div class="admin-modal-content">
+      <button class="admin-modal-close" onclick="closeAdminModal('modal-holiday')">&times;</button>
+      <h3 id="modal-holiday-title">Add Academic Holiday</h3>
+      <form id="form-holiday" onsubmit="saveHolidayForm(event)">
+        <input type="hidden" id="holiday-form-id">
+        <div class="admin-form-group">
+          <label for="holiday-form-date">Holiday Date *</label>
+          <input type="date" id="holiday-form-date" required>
+        </div>
+        <div class="admin-form-group">
+          <label for="holiday-form-name">Holiday Description *</label>
+          <input type="text" id="holiday-form-name" placeholder="e.g. Independence Day" required>
+        </div>
+        <div class="admin-form-group">
+          <label for="holiday-form-category">Category *</label>
+          <select id="holiday-form-category" required>
+            <option value="National">National Holiday</option>
+            <option value="Academy">Academy Holiday</option>
+            <option value="Festival">Festival Break</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="admin-modal-actions">
+          <button type="button" class="admin-btn" onclick="closeAdminModal('modal-holiday')">Cancel</button>
+          <button type="submit" class="admin-btn admin-btn-primary">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================
+     JAVASCRIPT APPLICATION MODULES
+     ========================================== -->
+  <script>
+    /* ==========================================
+       A. DATA SEEDING (LOCALSTORAGE)
+       ========================================== */
+    const DEFAULT_COURSES = [
+      { id: 1, name: "HTML", icon: "fa-brands fa-html5", desc: "The backbone of every website. Learn to structure web content with semantic HTML5 tags used by professionals worldwide." },
+      { id: 2, name: "CSS", icon: "fa-brands fa-css3-alt", desc: "Style the web beautifully. Master layouts, animations, Flexbox, Grid, and responsive design from scratch." },
+      { id: 3, name: "JavaScript", icon: "fa-brands fa-square-js", desc: "Bring websites to life. Learn DOM manipulation, ES6+, async programming, and build real interactive projects." },
+      { id: 4, name: "PHP", icon: "fa-brands fa-php", desc: "Power your backend with PHP. Build dynamic web apps, handle forms, and connect to databases like a pro." },
+      { id: 5, name: "Full Stack Java Development", icon: "fa-brands fa-java", desc: "End-to-end Java mastery. Spring Boot, REST APIs, Hibernate, and frontend integration in one complete course." },
+      { id: 6, name: "Full Stack Python Development", icon: "fa-brands fa-python", desc: "From Django to React. Build scalable full-stack applications using Python's most powerful frameworks." },
+      { id: 7, name: "SQL", icon: "fa-solid fa-database", desc: "Query like a data expert. Master SELECT, JOINs, subqueries, and database design fundamentals." },
+      { id: 8, name: "MySQL", icon: "fa-solid fa-server", desc: "The world's most popular open-source database. Learn installation, administration, indexing, and optimization." },
+      { id: 9, name: "PL/SQL", icon: "fa-solid fa-gears", desc: "Oracle's powerful procedural extension of SQL. Write stored procedures, triggers, and packages for enterprise-grade systems." },
+      { id: 10, name: "Antigravity Crash Course", icon: "fa-solid fa-shuttle-space", desc: "Think beyond gravity. An experimental rapid-learning program that challenges your mind with unconventional tech concepts and lateral coding puzzles." },
+      { id: 11, name: "Claude Crash Course", icon: "fa-solid fa-brain", desc: "Master AI-assisted development with Anthropic's Claude. Learn prompting, workflows, and building apps using Claude API." },
+      { id: 12, name: "AI Tools", icon: "fa-solid fa-robot", desc: "Supercharge your workflow. Explore the most powerful AI tools — ChatGPT, Midjourney, Copilot, Claude, and more — used by professionals in 2025." }
+    ];
+
+    const DEFAULT_EVENTS = [
+      { id: 1, title: "Zero Gravity Hackathon", tag: "Hackathon", date: "2026-07-15", desc: "A 24-hour sprint where students build tools using local AI models and unorthodox APIs." },
+      { id: 2, title: "Claude API Workshops", tag: "Workshop", date: "2026-07-28", desc: "Build agentic scripts that manage directories and auto-generate reports in Python." },
+      { id: 3, title: "Database Optimization Summit", tag: "Seminar", date: "2026-08-05", desc: "Learn MySQL index administration and advanced queries with lead DB architects." }
+    ];
+
+    const DEFAULT_GALLERY = [
+      { id: 1, title: "Main Lab Session", url: "" },
+      { id: 2, title: "AI Prompting Challenge", url: "" },
+      { id: 3, title: "Collaborative Coding", url: "" },
+      { id: 4, title: "Alumni Interaction", url: "" },
+      { id: 5, title: "Hackathon Brainstorm", url: "" },
+      { id: 6, title: "Graduation Pitch Day", url: "" },
+      { id: 7, title: "Database Schema Sprint", url: "" },
+      { id: 8, title: "Antigravity Testing", url: "" },
+      { id: 9, title: "Web Design Showcase", url: "" }
+    ];
+
+    const DEFAULT_QUIZ = [
+      { id: 1, question: "What does HTML stand for?", category: "HTML", choices: ["HyperText Markup Language", "HyperText Markdown Language", "HighText Machine Language", "Hyperlink Text Markup Language"], correct: 0 },
+      { id: 2, question: "Which CSS property changes the color of text?", category: "CSS", choices: ["text-style", "font-color", "color", "background-color"], correct: 2 },
+      { id: 3, question: "Which language is used to make web pages interactive?", category: "JavaScript", choices: ["HTML", "CSS", "SQL", "JavaScript"], correct: 3 },
+      { id: 4, question: "Which HTML tag is used for the largest heading?", category: "HTML", choices: ["<h6>", "<h1>", "<head>", "<heading>"], correct: 1 },
+      { id: 5, question: "In Python, which function is used to output text to the screen?", category: "Python", choices: ["output()", "echo()", "print()", "console.log()"], correct: 2 },
+      { id: 6, question: "What does CSS stand for?", category: "CSS", choices: ["Cascading Style Sheets", "Creative Style Sheets", "Computer Style Sheets", "Custom Styled System"], correct: 0 },
+      { id: 7, question: "Which HTML element is used to insert a simple line break?", category: "HTML", choices: ["<lb>", "<break>", "<br>", "<spacer>"], correct: 2 },
+      { id: 8, question: "Which symbol starts a comment line in Python?", category: "Python", choices: ["//", "/*", "#", "<!--"], correct: 2 },
+      { id: 9, question: "What is the correct file extension for Python scripts?", category: "Python", choices: [".py", ".pyt", ".python", ".txt"], correct: 0 },
+      { id: 10, question: "Which HTML tag is used to display an image?", category: "HTML", choices: ["<pic>", "<media>", "<img>", "<src>"], correct: 2 },
+      { id: 11, question: "Which CSS property is used to add space inside a border?", category: "CSS", choices: ["margin", "padding", "spacing", "border-spacing"], correct: 1 },
+      { id: 12, question: "Which CSS property is used to add space outside a border?", category: "CSS", choices: ["margin", "padding", "offset", "border-margin"], correct: 0 },
+      { id: 13, question: "What is the correct way to write an array list in JavaScript?", category: "JavaScript", choices: ["let list = (1, 2, 3)", "let list = {1, 2, 3}", "let list = [1, 2, 3]", "let list = <1, 2, 3>"], correct: 2 },
+      { id: 14, question: "Which JS keyword declares a variable that cannot be reassigned?", category: "JavaScript", choices: ["let", "var", "const", "static"], correct: 2 },
+      { id: 15, question: "What does SQL stand for?", category: "General Tech", choices: ["Structured Query Language", "System Question Language", "Simple Query Loop", "Sequential Query Library"], correct: 0 },
+      { id: 16, question: "Which HTML tag is used to create a hyperlink page link?", category: "HTML", choices: ["<link>", "<a>", "<href>", "<url>"], correct: 1 },
+      { id: 17, question: "Which of the following is a popular AI tool used by developers to write code?", category: "AI Basics", choices: ["MySQL", "ChatGPT", "Adobe Photoshop", "Microsoft Excel"], correct: 1 },
+      { id: 18, question: "Which SQL clause is used to filter records in a database table?", category: "General Tech", choices: ["GROUP BY", "ORDER BY", "HAVING", "WHERE"], correct: 3 },
+      { id: 19, question: "In CSS, how do you make text look bold?", category: "CSS", choices: ["font-style: bold", "font-weight: bold", "text-bold: true", "font-bold: yes"], correct: 1 },
+      { id: 20, question: "Which of these is a widely-used database system?", category: "General Tech", choices: ["Python", "MySQL", "CSS", "HTML"], correct: 1 }
+    ];
+
+    const DEFAULT_STUDENTS = [
+      { id: 1, name: "Gaurav Sen", phone: "+91 9848022338", email: "gaurav.sen@gmail.com", course: "Full Stack Java Development", downPayment: 15000, totalFee: 35000, paymentStatus: "Partial", enrollmentDate: "2026-06-01", notes: "Very attentive, excels in REST API integrations.", performance: 92, attendance: 96, chartData: [80, 85, 90, 96] },
+      { id: 2, name: "Sneha Reddy", phone: "+91 8897044112", email: "sneha.r@yahoo.com", course: "JavaScript", downPayment: 12000, totalFee: 12000, paymentStatus: "Paid", enrollmentDate: "2026-06-10", notes: "Completed all basic DOM exercises early.", performance: 95, attendance: 100, chartData: [90, 95, 98, 100] },
+      { id: 3, name: "Aditya Varma", phone: "+91 7702811445", email: "varma.aditya@outlook.com", course: "Claude Crash Course", downPayment: 0, totalFee: 8000, paymentStatus: "Pending", enrollmentDate: "2026-06-25", notes: "Needs guidance on API key configuration.", performance: 75, attendance: 80, chartData: [70, 75, 72, 80] }
+    ];
+
+    const DEFAULT_STAFF = [
+      { id: 1, name: "Dr. Vikram Dev", role: "Lead AI Architect", phone: "+91 9988556622", email: "vikram@infinity.edu", dept: "Advanced Research", joinDate: "2024-03-12", status: "Active" },
+      { id: 2, name: "Prof. Anjali Sharma", role: "Senior Java Instructor", phone: "+91 8877445566", email: "anjali@infinity.edu", dept: "Backend Systems", joinDate: "2025-01-10", status: "Active" }
+    ];
+
+    const DEFAULT_AD_BANNER = {
+      active: true,
+      text: "SUPERCHARGE YOUR CAREER: GET 25% OFF ON PYTHON AND CLAUDE CRASH COURSES THIS WEEK ONLY!",
+      theme: "#ffeb3b",
+      expiry: "2026-07-31"
+    };
+
+    // Initialize LocalStorage Data structures
+    function initDatabase() {
+      if (!localStorage.getItem("infinity_courses")) {
+        localStorage.setItem("infinity_courses", JSON.stringify(DEFAULT_COURSES));
+      }
+      if (!localStorage.getItem("infinity_events")) {
+        localStorage.setItem("infinity_events", JSON.stringify(DEFAULT_EVENTS));
+      }
+      if (!localStorage.getItem("infinity_gallery")) {
+        localStorage.setItem("infinity_gallery", JSON.stringify(DEFAULT_GALLERY));
+      }
+      if (!localStorage.getItem("infinity_quiz") || !localStorage.getItem("infinity_quiz_v2")) {
+        localStorage.setItem("infinity_quiz", JSON.stringify(DEFAULT_QUIZ));
+        localStorage.setItem("infinity_quiz_v2", "true");
+      }
+      if (!localStorage.getItem("infinity_students")) {
+        localStorage.setItem("infinity_students", JSON.stringify(DEFAULT_STUDENTS));
+      }
+      if (!localStorage.getItem("infinity_staff")) {
+        localStorage.setItem("infinity_staff", JSON.stringify(DEFAULT_STAFF));
+      }
+      if (!localStorage.getItem("infinity_ad_banner")) {
+        localStorage.setItem("infinity_ad_banner", JSON.stringify(DEFAULT_AD_BANNER));
+      }
+      if (!localStorage.getItem("infinity_attendance")) {
+        localStorage.setItem("infinity_attendance", JSON.stringify({}));
+      }
+      
+      const DEFAULT_HOLIDAYS = [
+        { id: 1, date: "2026-01-01", name: "New Year's Day", category: "National" },
+        { id: 2, date: "2026-01-26", name: "Republic Day", category: "National" },
+        { id: 3, date: "2026-08-15", name: "Independence Day", category: "National" },
+        { id: 4, date: "2026-10-02", name: "Gandhi Jayanti", category: "National" },
+        { id: 5, date: "2026-12-25", name: "Christmas Day", category: "Festival" }
+      ];
+      if (!localStorage.getItem("infinity_holidays")) {
+        localStorage.setItem("infinity_holidays", JSON.stringify(DEFAULT_HOLIDAYS));
+      }
+    }
+
+    initDatabase();
+
+    // Helper functions to fetch data
+    const getCoursesDB = () => JSON.parse(localStorage.getItem("infinity_courses"));
+    const setCoursesDB = (data) => localStorage.setItem("infinity_courses", JSON.stringify(data));
+
+    const getEventsDB = () => JSON.parse(localStorage.getItem("infinity_events"));
+    const setEventsDB = (data) => localStorage.setItem("infinity_events", JSON.stringify(data));
+
+    const getGalleryDB = () => JSON.parse(localStorage.getItem("infinity_gallery"));
+    const setGalleryDB = (data) => localStorage.setItem("infinity_gallery", JSON.stringify(data));
+
+    const getQuizDB = () => JSON.parse(localStorage.getItem("infinity_quiz"));
+    const setQuizDB = (data) => localStorage.setItem("infinity_quiz", JSON.stringify(data));
+
+    const getStudentsDB = () => JSON.parse(localStorage.getItem("infinity_students"));
+    const setStudentsDB = (data) => localStorage.setItem("infinity_students", JSON.stringify(data));
+
+    const getStaffDB = () => JSON.parse(localStorage.getItem("infinity_staff"));
+    const setStaffDB = (data) => localStorage.setItem("infinity_staff", JSON.stringify(data));
+
+    const getAdBannerDB = () => JSON.parse(localStorage.getItem("infinity_ad_banner"));
+    const setAdBannerDB = (data) => localStorage.setItem("infinity_ad_banner", JSON.stringify(data));
+
+    const getAttendanceDB = () => JSON.parse(localStorage.getItem("infinity_attendance"));
+    const setAttendanceDB = (data) => localStorage.setItem("infinity_attendance", JSON.stringify(data));
+
+    const getHolidaysDB = () => JSON.parse(localStorage.getItem("infinity_holidays"));
+    const setHolidaysDB = (data) => localStorage.setItem("infinity_holidays", JSON.stringify(data));
+
+
+    /* ==========================================
+       B. CANVAS PENCIL DUST EFFECT (HERO)
+       ========================================== */
+    const canvas = document.getElementById("hero-canvas");
+    const ctx = canvas.getContext("2d");
+
+    let particles = [];
+    const particleColors = ["#1a1a1a", "#555555", "#888888", "#b5b5b5"];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = canvas.parentElement.clientHeight;
+    }
+
+    window.addEventListener("resize", resizeCanvas);
+    resizeCanvas();
+
+    // Graphite shavings/Ink droplets sketch particle simulation
+    class SketchParticle {
+      constructor() {
+        this.reset();
+      }
+
+      reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 6 + 2;
+        this.speedX = Math.random() * 0.4 - 0.2;
+        this.speedY = Math.random() * 0.4 - 0.2;
+        this.color = particleColors[Math.floor(Math.random() * particleColors.length)];
+        this.alpha = Math.random() * 0.2 + 0.05;
+        this.life = Math.random() * 300 + 200;
+        this.currentLife = this.life;
+      }
+
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        this.currentLife--;
+        
+        this.alpha = (this.currentLife / this.life) * 0.25;
+
+        if (this.currentLife <= 0 || this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
+          this.reset();
+        }
+      }
+
+      draw() {
+        ctx.save();
+        ctx.globalAlpha = this.alpha;
+        ctx.strokeStyle = this.color;
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        // Render hollow sketch rings/dots
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.restore();
+      }
+    }
+
+    const particleCount = 60;
+    for (let i = 0; i < particleCount; i++) {
+      particles.push(new SketchParticle());
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+
+      requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
+
+
+    /* ==========================================
+       C. TYPEWRITER EFFECT (HERO TAGLINE)
+       ========================================== */
+    const taglineWords = [
+      "Where Code Meets Creativity.",
+      "Shape Your Digital Future Today.",
+      "Design. Develop. Deploy.",
+      "Master the Unorthodox Technologies."
+    ];
+
+    let wordIdx = 0;
+    let charIdx = 0;
+    let isDeleting = false;
+    const typewriterElement = document.getElementById("typewriter-text");
+
+    function typeWriter() {
+      const currentWord = taglineWords[wordIdx];
+      
+      if (!isDeleting) {
+        typewriterElement.textContent = currentWord.substring(0, charIdx + 1);
+        charIdx++;
+
+        if (charIdx === currentWord.length) {
+          isDeleting = true;
+          setTimeout(typeWriter, 2000);
+          return;
+        }
+      } else {
+        typewriterElement.textContent = currentWord.substring(0, charIdx - 1);
+        charIdx--;
+
+        if (charIdx === 0) {
+          isDeleting = false;
+          wordIdx = (wordIdx + 1) % taglineWords.length;
+        }
+      }
+
+      const speed = isDeleting ? 40 : 80;
+      setTimeout(typeWriter, speed);
+    }
+
+    setTimeout(typeWriter, 1000);
+
+
+    /* ==========================================
+       D. NAVIGATION STICKY & HIGHLIGHT
+       ========================================== */
+    const headerEl = document.getElementById("site-header");
+    const sectionsList = document.querySelectorAll("section");
+    const navLinksList = document.querySelectorAll(".nav-links .nav-link, .mobile-drawer .nav-link");
+    const hamburgerBtn = document.getElementById("hamburger-btn");
+    const mobileDrawer = document.getElementById("mobile-drawer-menu");
+
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 50) {
+        headerEl.classList.add("scrolled");
+      } else {
+        headerEl.classList.remove("scrolled");
+      }
+
+      let currentActiveSection = "home";
+      sectionsList.forEach(sec => {
+        const secTop = sec.offsetTop - 120;
+        const secHeight = sec.clientHeight;
+        if (window.scrollY >= secTop && window.scrollY < secTop + secHeight) {
+          currentActiveSection = sec.getAttribute("id");
+        }
+      });
+
+      navLinksList.forEach(link => {
+        if (link.getAttribute("data-sec") === currentActiveSection) {
+          link.classList.add("active");
+        } else {
+          link.classList.remove("active");
+        }
+      });
+    });
+
+    hamburgerBtn.addEventListener("click", toggleMobileMenu);
+
+    function toggleMobileMenu() {
+      hamburgerBtn.classList.toggle("active");
+      mobileDrawer.classList.toggle("active");
+    }
+
+
+    /* ==========================================
+       E. INTERSECTION OBSERVER (SCROLL REVEAL)
+       ========================================== */
+    const revealElements = document.querySelectorAll(".reveal");
+    const observerOptions = {
+      root: null,
+      threshold: 0.1,
+      rootMargin: "0px 0px -50px 0px"
+    };
+
+    const sectionObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("active");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    revealElements.forEach(el => sectionObserver.observe(el));
+
+
+    /* ==========================================
+       F. RENDER PUBLIC SITE DATA
+       ========================================== */
+    
+    // Load and Display Courses
+    function renderPublicCourses() {
+      const container = document.getElementById("courses-grid-container");
+      const courses = getCoursesDB();
+      container.innerHTML = "";
+
+      courses.forEach(c => {
+        const card = document.createElement("div");
+        card.className = "sketch-card course-card";
+        card.setAttribute("onclick", `scrollToBookSession('${c.name}')`);
+        card.style.display = "flex";
+        card.style.flexDirection = "column";
+        
+        card.innerHTML = `
+          <div class="course-card-icon"><i class="${c.icon}"></i></div>
+          <h3 class="course-card-title">${c.name}</h3>
+          <p class="course-card-desc">${c.desc}</p>
+          <button class="btn-sketch course-card-btn">Enroll Now</button>
+        `;
+        
+        container.appendChild(card);
+      });
+    }
+
+    // Scroll helper and pre-fill course dropdown
+    function scrollToBookSession(courseName) {
+      const bookSec = document.getElementById("book-session");
+      bookSec.scrollIntoView({ behavior: "smooth" });
+      
+      const selectEl = document.getElementById("book-course");
+      if (selectEl) {
+        setTimeout(() => {
+          selectEl.value = courseName;
+        }, 100);
+      }
+    }
+
+    // Load and Display Events
+    function renderPublicEvents() {
+      const container = document.getElementById("events-grid-container");
+      const events = getEventsDB();
+      container.innerHTML = "";
+
+      if (events.length === 0) {
+        container.innerHTML = `
+          <div style="grid-column: span 3; text-align: center; color: var(--text-muted); padding: 2rem;">
+            <p>No upcoming events currently scheduled. Keep checking back!</p>
+          </div>
+        `;
+        return;
+      }
+
+      events.forEach((ev, idx) => {
+        const card = document.createElement("div");
+        card.className = "event-card";
+        
+        card.innerHTML = `
+          <span class="event-tag">${ev.tag || "Core"}</span>
+          <div class="event-date">${formatDateFriendly(ev.date)}</div>
+          <h3 class="event-title">${ev.title}</h3>
+          <p class="event-desc">${ev.desc}</p>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function formatDateFriendly(dateStr) {
+      if (!dateStr) return "";
+      const date = new Date(dateStr);
+      const options = { year: 'numeric', month: 'short', day: 'numeric' };
+      return date.toLocaleDateString('en-US', options);
+    }
+
+    // Load and Display Gallery Images
+    let currentGalleryPhotos = [];
+    function renderPublicGallery() {
+      const container = document.getElementById("gallery-grid-container");
+      currentGalleryPhotos = getGalleryDB();
+      container.innerHTML = "";
+
+      const gradientPool = [
+        "linear-gradient(45deg, #ffffff, #f0eee8)",
+        "linear-gradient(45deg, #ffffff, #e6f7ff)",
+        "linear-gradient(45deg, #ffffff, #fffbe6)",
+        "linear-gradient(45deg, #ffffff, #f6ffed)"
+      ];
+
+      currentGalleryPhotos.forEach((img, idx) => {
+        const item = document.createElement("div");
+        item.className = "gallery-item";
+        item.setAttribute("onclick", `openLightbox(${idx})`);
+        
+        let visualHTML = "";
+        if (img.url && img.url.trim() !== "") {
+          visualHTML = `<img src="${img.url}" alt="${img.title}">`;
+        } else {
+          const grad = gradientPool[idx % gradientPool.length];
+          visualHTML = `
+            <div class="gallery-placeholder" style="background: ${grad}">
+              <i class="fa-solid fa-code" style="font-size: 2.2rem; margin-bottom: 0.6rem; opacity: 0.2;"></i>
+              <span>${img.title}</span>
+            </div>
+          `;
+        }
+
+        item.innerHTML = `
+          ${visualHTML}
+          <div class="gallery-overlay">
+            <h4>${img.title}</h4>
+          </div>
+        `;
+        
+        container.appendChild(item);
+      });
+    }
+
+    // Public Course Dropdown list
+    function populateBookingCourseDropdown() {
+      const selectEl = document.getElementById("book-course");
+      if (!selectEl) return;
+      const courses = getCoursesDB();
+      
+      selectEl.innerHTML = '<option value="" disabled selected>Select a Course</option>';
+      
+      courses.forEach(c => {
+        const opt = document.createElement("option");
+        opt.value = c.name;
+        opt.textContent = c.name;
+        selectEl.appendChild(opt);
+      });
+    }
+
+    // Load Ad Banner settings
+    function renderAdBanner() {
+      const banner = document.getElementById("top-ad-banner");
+      const textEl = document.getElementById("ad-banner-text");
+      const bannerData = getAdBannerDB();
+
+      if (!bannerData || bannerData.active === false || bannerData.active === "false") {
+        banner.classList.add("hidden");
+        return;
+      }
+
+      if (bannerData.expiry) {
+        const today = new Date();
+        const expDate = new Date(bannerData.expiry);
+        if (today > expDate) {
+          banner.classList.add("hidden");
+          return;
+        }
+      }
+
+      textEl.textContent = bannerData.text;
+      banner.style.borderBottom = `3px solid #1a1a1a`;
+      banner.style.backgroundColor = bannerData.theme || '#ffeb3b';
+      banner.classList.remove("hidden");
+    }
+
+    function dismissBanner() {
+      document.getElementById("top-ad-banner").classList.add("hidden");
+    }
+
+    function renderAllPublicComponents() {
+      renderAdBanner();
+      renderPublicCourses();
+      renderPublicEvents();
+      renderPublicGallery();
+      populateBookingCourseDropdown();
+    }
+
+    renderAllPublicComponents();
+
+
+    /* ==========================================
+       G. LIGHTBOX IMAGE VIEW
+       ========================================== */
+    const lightboxModal = document.getElementById("lightbox-modal");
+    const lightboxImage = document.getElementById("lightbox-image");
+    const lightboxPlaceholder = document.getElementById("lightbox-placeholder-tile");
+    let activeLightboxIndex = 0;
+
+    function openLightbox(index) {
+      activeLightboxIndex = index;
+      lightboxModal.classList.add("active");
+      showLightboxContent();
+      
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeLightbox() {
+      lightboxModal.classList.remove("active");
+      document.body.style.overflow = "auto";
+    }
+
+    function navigateLightbox(dir) {
+      activeLightboxIndex += dir;
+      if (activeLightboxIndex < 0) {
+        activeLightboxIndex = currentGalleryPhotos.length - 1;
+      } else if (activeLightboxIndex >= currentGalleryPhotos.length) {
+        activeLightboxIndex = 0;
+      }
+      showLightboxContent();
+    }
+
+    function showLightboxContent() {
+      const item = currentGalleryPhotos[activeLightboxIndex];
+      const gradientPool = [
+        "linear-gradient(45deg, #ffffff, #f5f5f5)",
+        "linear-gradient(45deg, #ffffff, #e6f7ff)",
+        "linear-gradient(45deg, #ffffff, #fffbe6)",
+        "linear-gradient(45deg, #ffffff, #f6ffed)"
+      ];
+
+      if (item.url && item.url.trim() !== "") {
+        lightboxImage.src = item.url;
+        lightboxImage.style.display = "block";
+        lightboxPlaceholder.style.display = "none";
+      } else {
+        lightboxImage.style.display = "none";
+        lightboxPlaceholder.style.display = "flex";
+        lightboxPlaceholder.style.background = gradientPool[activeLightboxIndex % gradientPool.length];
+        lightboxPlaceholder.innerHTML = `
+          <i class="fa-solid fa-code" style="font-size: 3.5rem; margin-bottom: 1.2rem; opacity: 0.2;"></i>
+          <h2>${item.title}</h2>
+        `;
+      }
+    }
+
+    lightboxModal.addEventListener("click", (e) => {
+      if (e.target === lightboxModal) {
+        closeLightbox();
+      }
+    });
+
+
+    /* ==========================================
+       H. QUIZ COMPONENT ENGINE
+       ========================================== */
+    let quizSelectedQuestions = [];
+    let currentQuestionIdx = 0;
+    let quizScore = 0;
+    let selectedAnswerIdx = null;
+
+    const quizTriggerCard = document.getElementById("quiz-trigger-card");
+    const quizGameContainer = document.getElementById("quiz-game-container");
+    const quizIntroCard = document.getElementById("quiz-intro-card");
+    const quizGameplayCard = document.getElementById("quiz-gameplay-card");
+    const quizScorecardCard = document.getElementById("quiz-scorecard-card");
+    
+    const questionTitle = document.getElementById("quiz-question-title");
+    const choicesWrap = document.getElementById("quiz-choices-wrap");
+    const questionIndexText = document.getElementById("question-index-text");
+    const scoreTracker = document.getElementById("quiz-score-tracker");
+    const progressBar = document.getElementById("quiz-bar");
+    const nextBtn = document.getElementById("quiz-next-btn");
+
+    function startQuizEngine() {
+      quizTriggerCard.style.display = "none";
+      quizGameContainer.classList.add("active");
+      
+      quizIntroCard.style.display = "block";
+      quizGameplayCard.style.display = "none";
+      quizScorecardCard.style.display = "none";
+    }
+
+    function beginQuizPlay() {
+      const fullPool = getQuizDB();
+      const shuffled = [...fullPool].sort(() => 0.5 - Math.random());
+      quizSelectedQuestions = shuffled.slice(0, 8);
+      
+      currentQuestionIdx = 0;
+      quizScore = 0;
+      selectedAnswerIdx = null;
+
+      quizIntroCard.style.display = "none";
+      quizGameplayCard.style.display = "block";
+      quizScorecardCard.style.display = "none";
+
+      renderQuizQuestion();
+    }
+
+    function renderQuizQuestion() {
+      selectedAnswerIdx = null;
+      nextBtn.disabled = true;
+      
+      const q = quizSelectedQuestions[currentQuestionIdx];
+      
+      questionIndexText.textContent = `Question ${currentQuestionIdx + 1} of 8`;
+      scoreTracker.textContent = `Score: ${quizScore}`;
+      progressBar.style.width = `${((currentQuestionIdx) / 8) * 100}%`;
+      
+      questionTitle.textContent = q.question;
+      choicesWrap.innerHTML = "";
+
+      q.choices.forEach((choice, idx) => {
+        const btn = document.createElement("button");
+        btn.className = "quiz-choice-btn";
+        btn.setAttribute("onclick", `selectQuizChoice(${idx})`);
+
+        const span = document.createElement("span");
+        span.textContent = choice;
+
+        const icon = document.createElement("i");
+        icon.className = "fa-regular fa-circle";
+        icon.id = `choice-icon-${idx}`;
+
+        btn.appendChild(span);
+        btn.appendChild(icon);
+        choicesWrap.appendChild(btn);
+      });
+    }
+
+    function selectQuizChoice(choiceIdx) {
+      if (selectedAnswerIdx !== null) return;
+      
+      selectedAnswerIdx = choiceIdx;
+      const q = quizSelectedQuestions[currentQuestionIdx];
+      const isCorrect = (choiceIdx === q.correct);
+      
+      const choiceButtons = choicesWrap.querySelectorAll(".quiz-choice-btn");
+      
+      choiceButtons.forEach((btn, idx) => {
+        const icon = btn.querySelector("i");
+        
+        if (idx === q.correct) {
+          btn.classList.add("correct");
+          icon.className = "fa-solid fa-circle-check";
+        }
+        
+        if (idx === choiceIdx) {
+          if (isCorrect) {
+            quizScore++;
+            scoreTracker.textContent = `Score: ${quizScore}`;
+          } else {
+            btn.classList.add("incorrect");
+            icon.className = "fa-solid fa-circle-xmark";
+          }
+        }
+      });
+
+      progressBar.style.width = `${((currentQuestionIdx + 1) / 8) * 100}%`;
+      nextBtn.disabled = false;
+    }
+
+    function nextQuizQuestion() {
+      currentQuestionIdx++;
+      if (currentQuestionIdx < 8) {
+        renderQuizQuestion();
+      } else {
+        renderQuizScorecard();
+      }
+    }
+
+    function renderQuizScorecard() {
+      quizGameplayCard.style.display = "none";
+      quizScorecardCard.style.display = "block";
+
+      const scoreVal = document.getElementById("quiz-score-value");
+      const badgeDisplay = document.getElementById("quiz-badge-display");
+      const motivMsg = document.getElementById("quiz-motivational-msg");
+
+      scoreVal.textContent = `${quizScore} / 8`;
+
+      let badgeClass = "badge-beginner";
+      let badgeName = "Beginner";
+      let msg = "Great attempt! Keep practice-coding. Your tech journey starts here.";
+
+      if (quizScore >= 8) {
+        badgeClass = "badge-scholar";
+        badgeName = "Infinity Scholar";
+        msg = "Flawless score! You belong to the elite tier of developers. Shape the digital future at Infinity Institutions.";
+        triggerConfettiRain();
+      } else if (quizScore >= 6) {
+        badgeClass = "badge-pro";
+        badgeName = "Pro Coder";
+        msg = "Excellent performance! Highly analytical skillset. You possess exceptional developer instincts.";
+        triggerConfettiRain();
+      } else if (quizScore >= 4) {
+        badgeClass = "badge-star";
+        badgeName = "Rising Star";
+        msg = "Strong baseline IQ. With structured mentorship, you can easily command enterprise systems.";
+      }
+
+      badgeDisplay.textContent = badgeName;
+      badgeDisplay.className = `quiz-badge ${badgeClass}`;
+      motivMsg.textContent = msg;
+    }
+
+    function restartQuizEngine() {
+      beginQuizPlay();
+    }
+
+
+    /* ==========================================
+       I. CONFETTI ANIMATION SYSTEM
+       ========================================== */
+    const confCanvas = document.getElementById("confetti-canvas");
+    const confCtx = confCanvas.getContext("2d");
+    let confParticles = [];
+    let isConfettiActive = false;
+    const confettiColors = ["#00bcd4", "#e91e63", "#ffeb3b", "#8bc34a"];
+
+    function resizeConfettiCanvas() {
+      confCanvas.width = confCanvas.parentElement.clientWidth;
+      confCanvas.height = confCanvas.parentElement.clientHeight;
+    }
+
+    class ConfettiPiece {
+      constructor() {
+        this.x = Math.random() * confCanvas.width;
+        this.y = -20;
+        this.size = Math.random() * 6 + 4;
+        this.speedX = Math.random() * 4 - 2;
+        this.speedY = Math.random() * 5 + 3;
+        this.color = confettiColors[Math.floor(Math.random() * confettiColors.length)];
+        this.rotation = Math.random() * 360;
+        this.rotationSpeed = Math.random() * 4 - 2;
+      }
+
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        this.rotation += this.rotationSpeed;
+      }
+
+      draw() {
+        confCtx.save();
+        confCtx.translate(this.x, this.y);
+        confCtx.rotate((this.rotation * Math.PI) / 180);
+        confCtx.fillStyle = this.color;
+        confCtx.fillRect(-this.size / 2, -this.size / 2, this.size, this.size);
+        confCtx.restore();
+      }
+    }
+
+    function triggerConfettiRain() {
+      resizeConfettiCanvas();
+      confParticles = [];
+      isConfettiActive = true;
+
+      for (let i = 0; i < 150; i++) {
+        confParticles.push(new ConfettiPiece());
+      }
+
+      animateConfetti();
+      
+      setTimeout(() => {
+        isConfettiActive = false;
+      }, 5000);
+    }
+
+    function animateConfetti() {
+      if (!isConfettiActive && confParticles.length === 0) {
+        confCtx.clearRect(0, 0, confCanvas.width, confCanvas.height);
+        return;
+      }
+
+      confCtx.clearRect(0, 0, confCanvas.width, confCanvas.height);
+      
+      for (let i = confParticles.length - 1; i >= 0; i--) {
+        const p = confParticles[i];
+        p.update();
+        p.draw();
+
+        if (p.y > confCanvas.height) {
+          if (isConfettiActive) {
+            confParticles[i] = new ConfettiPiece();
+          } else {
+            confParticles.splice(i, 1);
+          }
+        }
+      }
+
+      requestAnimationFrame(animateConfetti);
+    }
+
+
+    /* ==========================================
+       J. SESSION BOOKING FORM SUBMIT (WHATSAPP REDIRECT)
+       ========================================== */
+    function submitBookingForm(e) {
+      e.preventDefault();
+      
+      const submitBtn = document.getElementById("book-submit-btn");
+      const name = document.getElementById("book-name").value;
+      const phone = document.getElementById("book-phone").value;
+      const email = document.getElementById("book-email").value;
+      const course = document.getElementById("book-course").value;
+      const date = document.getElementById("book-date").value;
+      const time = document.getElementById("book-time").value;
+      const message = document.getElementById("book-message").value || "No additional comments.";
+
+      submitBtn.classList.add("loading");
+
+      setTimeout(() => {
+        // WhatsApp message (Strictly NO EMOJIS)
+        const textMessage = 
+          `Hello Infinity Institutions and Technologies!\n` +
+          `New Session Booking Request:\n` +
+          `Name: ${name}\n` +
+          `Phone: ${phone}\n` +
+          `Email: ${email}\n` +
+          `Course: ${course}\n` +
+          `Preferred Date: ${date}\n` +
+          `Preferred Time: ${time}\n` +
+          `Message: ${message}`;
+
+        const encodedMsg = encodeURIComponent(textMessage);
+        const waURL = `https://wa.me/917780649938?text=${encodedMsg}`;
+
+        registerBookingToMockStudents(name, phone, email, course, date, message);
+
+        submitBtn.classList.remove("loading");
+        submitBtn.classList.add("success");
+        submitBtn.querySelector("span").textContent = "REDIRECTING...";
+
+        setTimeout(() => {
+          window.open(waURL, "_blank");
+
+          document.getElementById("session-booking-form").reset();
+          submitBtn.classList.remove("success");
+          submitBtn.querySelector("span").textContent = "BOOK YOUR SESSION";
+        }, 1500);
+
+      }, 1800);
+    }
+
+    function registerBookingToMockStudents(name, phone, email, course, date, message) {
+      const students = getStudentsDB();
+      const newStudent = {
+        id: Date.now(),
+        name: name,
+        phone: phone,
+        email: email,
+        course: course,
+        downPayment: 0,
+        totalFee: 10000,
+        paymentStatus: "Pending",
+        enrollmentDate: date || new Date().toISOString().split('T')[0],
+        notes: message || "Lead from website form booking.",
+        performance: 80,
+        attendance: 90,
+        chartData: [60, 70, 75, 80]
+      };
+      
+      students.push(newStudent);
+      setStudentsDB(students);
+
+      if (document.getElementById("admin-overlay").classList.contains("active")) {
+        renderStudentsTable();
+        renderPaymentsLedger();
+      }
+    }
+
+
+    /* ==========================================
+       K. ADMIN PORTAL BACKEND CONTROL
+       ========================================== */
+    const adminOverlay = document.getElementById("admin-overlay");
+    const loginCard = document.getElementById("admin-login");
+    const dashboardPanel = document.getElementById("admin-panel");
+    const errorMsg = document.getElementById("login-error-msg");
+    const passcodeField = document.getElementById("admin-pass");
+
+    document.addEventListener("keydown", (e) => {
+      if (e.ctrlKey && e.shiftKey && (e.key === "A" || e.key === "a")) {
+        e.preventDefault();
+        openAdmin();
+      }
+    });
+
+    function openAdmin() {
+      adminOverlay.classList.add("active");
+      
+      if (sessionStorage.getItem("infinity_logged_in") === "true") {
+        loginCard.style.display = "none";
+        dashboardPanel.classList.add("active");
+        loadAdminDashboardData();
+      } else {
+        loginCard.style.display = "block";
+        dashboardPanel.classList.remove("active");
+        passcodeField.focus();
+      }
+    }
+
+    function closeAdmin() {
+      adminOverlay.classList.remove("active");
+      errorMsg.style.display = "none";
+      passcodeField.value = "";
+    }
+
+    function verifyAdminPass(e) {
+      e.preventDefault();
+      const code = passcodeField.value;
+
+      // Updated Passcode
+      if (code === "ashlesh@7981") {
+        sessionStorage.setItem("infinity_logged_in", "true");
+        loginCard.style.display = "none";
+        dashboardPanel.classList.add("active");
+        errorMsg.style.display = "none";
+        passcodeField.value = "";
+        
+        loadAdminDashboardData();
+        showToast("Authenticated successfully!", "success");
+      } else {
+        errorMsg.style.display = "block";
+        passcodeField.value = "";
+        passcodeField.focus();
+        showToast("Passcode verification failed", "error");
+      }
+    }
+
+    function logoutAdmin() {
+      sessionStorage.removeItem("infinity_logged_in");
+      dashboardPanel.classList.remove("active");
+      loginCard.style.display = "block";
+      showToast("Logged out from admin session", "info");
+    }
+
+    function switchAdminTab(tabName) {
+      const navItems = document.querySelectorAll(".admin-nav-item");
+      navItems.forEach(item => {
+        if (item.getAttribute("data-tab") === tabName) {
+          item.classList.add("active");
+        } else {
+          item.classList.remove("active");
+        }
+      });
+
+      const contentTabs = document.querySelectorAll(".admin-tab-content");
+      contentTabs.forEach(tab => {
+        if (tab.getAttribute("id") === `tab-${tabName}`) {
+          tab.classList.add("active");
+        } else {
+          tab.classList.remove("active");
+        }
+      });
+
+      const titleMapping = {
+        "courses-manager": "Courses Manager",
+        "events-manager": "Events Manager",
+        "ads-manager": "Advertisements & Offers",
+        "students-manager": "Student Registry",
+        "staff-manager": "Staff Directory",
+        "payments-manager": "Payment Ledger Reports",
+        "gallery-manager": "Gallery Asset Manager",
+        "quiz-manager": "Tech Quiz Question Bank",
+        "attendance-manager": "Daily Attendance Sheet",
+        "holidays-manager": "Academic Holidays Calendar"
+      };
+
+      document.getElementById("admin-main-title").textContent = titleMapping[tabName];
+    }
+
+    function loadAdminDashboardData() {
+      renderAdminCourses();
+      renderAdminEvents();
+      loadPromoBannerSettingsForm();
+      populateStudentFormCourseDropdowns();
+      renderStudentsTable();
+      renderStaffCards();
+      renderPaymentsLedger();
+      renderAdminGallery();
+      renderAdminQuizTable();
+      
+      // Load Attendance & Holidays database
+      const dateInput = document.getElementById("attendance-date-select");
+      if (dateInput && !dateInput.value) {
+        dateInput.value = new Date().toISOString().split('T')[0];
+      }
+      populateAttendanceCourseDropdown();
+      loadDailyAttendance();
+      renderAdminHolidays();
+      
+      const dateDisplay = document.getElementById("admin-time-display");
+      const now = new Date();
+      dateDisplay.textContent = now.toISOString().replace('T', ' ').substring(0, 16);
+    }
+
+    function showToast(msg, type = "success") {
+      const container = document.getElementById("toast-container");
+      const toast = document.createElement("div");
+      toast.className = `toast toast-${type}`;
+      
+      let icon = "fa-solid fa-circle-check";
+      if (type === "error") icon = "fa-solid fa-triangle-exclamation";
+      if (type === "info") icon = "fa-solid fa-circle-info";
+
+      toast.innerHTML = `
+        <i class="${icon}"></i>
+        <span>${msg}</span>
+      `;
+
+      container.appendChild(toast);
+
+      setTimeout(() => {
+        toast.style.animation = "toastSlideIn 0.3s reverse forwards";
+        setTimeout(() => toast.remove(), 300);
+      }, 3000);
+    }
+
+
+    /* ==========================================
+       L. ADMIN TABS CONTROLLER (CRUD HANDLERS)
+       ========================================== */
+
+    // --- TAB 1: COURSES MANAGER CRUD ---
+    function renderAdminCourses() {
+      const tbody = document.getElementById("admin-courses-tbody");
+      const courses = getCoursesDB();
+      tbody.innerHTML = "";
+
+      courses.forEach(c => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td style="text-align: center; font-size: 1.3rem;"><i class="${c.icon}"></i></td>
+          <td style="font-weight: bold;">${c.name}</td>
+          <td style="color: var(--text-muted); max-width: 400px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${c.desc}</td>
+          <td style="text-align: center;">
+            <button class="admin-btn" onclick="openEditCourseModal(${c.id})" style="padding: 0.3rem 0.6rem; font-size: 0.8rem; margin-right: 0.3rem;"><i class="fa-solid fa-pen"></i></button>
+            <button class="admin-btn admin-btn-danger" onclick="deleteCourse(${c.id})" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;"><i class="fa-solid fa-trash"></i></button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function openAddCourseModal() {
+      document.getElementById("form-course").reset();
+      document.getElementById("course-form-id").value = "";
+      document.getElementById("modal-course-title").textContent = "Add New Course";
+      openAdminModal("modal-course");
+    }
+
+    function openEditCourseModal(id) {
+      const courses = getCoursesDB();
+      const course = courses.find(c => c.id === id);
+      if (!course) return;
+
+      document.getElementById("course-form-id").value = course.id;
+      document.getElementById("course-form-name").value = course.name;
+      document.getElementById("course-form-icon").value = course.icon;
+      document.getElementById("course-form-desc").value = course.desc;
+      
+      document.getElementById("modal-course-title").textContent = "Modify Course Profile";
+      openAdminModal("modal-course");
+    }
+
+    function saveCourseForm(e) {
+      e.preventDefault();
+      const id = document.getElementById("course-form-id").value;
+      const name = document.getElementById("course-form-name").value;
+      const icon = document.getElementById("course-form-icon").value;
+      const desc = document.getElementById("course-form-desc").value;
+
+      let courses = getCoursesDB();
+
+      if (id) {
+        courses = courses.map(c => c.id == id ? { ...c, name, icon, desc } : c);
+        showToast("Course profile updated!");
+      } else {
+        const newCourse = {
+          id: Date.now(),
+          name, icon, desc
+        };
+        courses.push(newCourse);
+        showToast("New Course registered successfully!");
+      }
+
+      setCoursesDB(courses);
+      closeAdminModal("modal-course");
+      renderAdminCourses();
+      renderPublicCourses();
+      populateBookingCourseDropdown();
+      populateStudentFormCourseDropdowns();
+    }
+
+    function deleteCourse(id) {
+      if (!confirm("Are you sure you want to delete this course? It will update the landing page immediately.")) return;
+      
+      let courses = getCoursesDB();
+      courses = courses.filter(c => c.id !== id);
+      setCoursesDB(courses);
+      
+      showToast("Course deleted", "error");
+      renderAdminCourses();
+      renderPublicCourses();
+      populateBookingCourseDropdown();
+      populateStudentFormCourseDropdowns();
+    }
+
+    // --- TAB 2: EVENTS MANAGER CRUD ---
+    function renderAdminEvents() {
+      const tbody = document.getElementById("admin-events-tbody");
+      const events = getEventsDB();
+      tbody.innerHTML = "";
+
+      events.forEach(e => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td style="font-weight: bold; color: var(--secondary-accent);">${e.title}</td>
+          <td><span class="status-badge status-partial">${e.tag || "Workshop"}</span></td>
+          <td style="font-family: var(--font-mono);">${e.date}</td>
+          <td style="color: var(--text-muted);">${e.desc}</td>
+          <td style="text-align: center;">
+            <button class="admin-btn" onclick="openEditEventModal(${e.id})" style="padding: 0.3rem 0.6rem; font-size: 0.8rem; margin-right: 0.3rem;"><i class="fa-solid fa-pen"></i></button>
+            <button class="admin-btn admin-btn-danger" onclick="deleteEvent(${e.id})" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;"><i class="fa-solid fa-trash"></i></button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function openAddEventModal() {
+      document.getElementById("form-event").reset();
+      document.getElementById("event-form-id").value = "";
+      document.getElementById("modal-event-title").textContent = "Add Upcoming Event";
+      openAdminModal("modal-event");
+    }
+
+    function openEditEventModal(id) {
+      const events = getEventsDB();
+      const event = events.find(e => e.id === id);
+      if (!event) return;
+
+      document.getElementById("event-form-id").value = event.id;
+      document.getElementById("event-form-title").value = event.title;
+      document.getElementById("event-form-tag").value = event.tag;
+      document.getElementById("event-form-date").value = event.date;
+      document.getElementById("event-form-desc").value = event.desc;
+      
+      document.getElementById("modal-event-title").textContent = "Modify Scheduled Event";
+      openAdminModal("modal-event");
+    }
+
+    function saveEventForm(e) {
+      e.preventDefault();
+      const id = document.getElementById("event-form-id").value;
+      const title = document.getElementById("event-form-title").value;
+      const tag = document.getElementById("event-form-tag").value;
+      const date = document.getElementById("event-form-date").value;
+      const desc = document.getElementById("event-form-desc").value;
+
+      let events = getEventsDB();
+
+      if (id) {
+        events = events.map(e => e.id == id ? { ...e, title, tag, date, desc } : e);
+        showToast("Workshop details updated!");
+      } else {
+        events.push({ id: Date.now(), title, tag, date, desc });
+        showToast("New workshop event scheduled!");
+      }
+
+      setEventsDB(events);
+      closeAdminModal("modal-event");
+      renderAdminEvents();
+      renderPublicEvents();
+    }
+
+    function deleteEvent(id) {
+      if (!confirm("Are you sure you want to remove this event?")) return;
+      let events = getEventsDB();
+      events = events.filter(e => e.id !== id);
+      setEventsDB(events);
+      
+      showToast("Event removed", "error");
+      renderAdminEvents();
+      renderPublicEvents();
+    }
+
+    // --- TAB 3: ADVERTISEMENTS BANNER ---
+    function loadPromoBannerSettingsForm() {
+      const data = getAdBannerDB();
+      if (!data) return;
+
+      document.getElementById("ad-banner-active").value = data.active.toString();
+      document.getElementById("ad-banner-text-input").value = data.text;
+      document.getElementById("ad-banner-theme").value = data.theme || "#ffeb3b";
+      document.getElementById("ad-banner-expiry").value = data.expiry || "";
+    }
+
+    function savePromoBannerSettings(e) {
+      e.preventDefault();
+      
+      const active = document.getElementById("ad-banner-active").value === "true";
+      const text = document.getElementById("ad-banner-text-input").value;
+      const theme = document.getElementById("ad-banner-theme").value;
+      const expiry = document.getElementById("ad-banner-expiry").value;
+
+      const adData = { active, text, theme, expiry };
+      setAdBannerDB(adData);
+      
+      showToast("Promo settings saved and broadcasted!");
+      renderAdBanner();
+    }
+
+    // --- TAB 4: STUDENTS MANAGER ---
+    let selectedStudentIdForAnalysis = null;
+
+    function populateStudentFormCourseDropdowns() {
+      const select = document.getElementById("student-form-course");
+      const filterSelect = document.getElementById("student-filter-course");
+      const courses = getCoursesDB();
+
+      select.innerHTML = "";
+      courses.forEach(c => {
+        const opt = document.createElement("option");
+        opt.value = c.name;
+        opt.textContent = c.name;
+        select.appendChild(opt);
+      });
+
+      filterSelect.innerHTML = '<option value="">All Courses</option>';
+      courses.forEach(c => {
+        const opt = document.createElement("option");
+        opt.value = c.name;
+        opt.textContent = c.name;
+        filterSelect.appendChild(opt);
+      });
+    }
+
+    function renderStudentsTable() {
+      const tbody = document.getElementById("admin-students-tbody");
+      const students = getStudentsDB();
+      
+      const search = document.getElementById("student-search-input").value.toLowerCase();
+      const filterCourse = document.getElementById("student-filter-course").value;
+      const filterStatus = document.getElementById("student-filter-status").value;
+
+      tbody.innerHTML = "";
+
+      const filtered = students.filter(s => {
+        const matchSearch = s.name.toLowerCase().includes(search) || 
+                            s.email.toLowerCase().includes(search) || 
+                            s.phone.includes(search);
+        
+        const matchCourse = filterCourse === "" ? true : s.course === filterCourse;
+        const matchStatus = filterStatus === "" ? true : s.paymentStatus === filterStatus;
+
+        return matchSearch && matchCourse && matchStatus;
+      });
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="9" style="text-align: center; color: var(--text-muted);">No matching students found</td></tr>`;
+        return;
+      }
+
+      filtered.forEach(s => {
+        const tr = document.createElement("tr");
+        tr.style.cursor = "pointer";
+        tr.setAttribute("onclick", `selectStudentForAnalysis(${s.id}, event)`);
+
+        if (selectedStudentIdForAnalysis === s.id) {
+          tr.style.background = "rgba(0, 0, 0, 0.04)";
+        }
+
+        let statusClass = "status-pending";
+        if (s.paymentStatus === "Paid") statusClass = "status-paid";
+        if (s.paymentStatus === "Partial") statusClass = "status-partial";
+
+        tr.innerHTML = `
+          <td contenteditable="true" onblur="updateStudentInlineField(${s.id}, 'name', this.innerText)" onclick="event.stopPropagation()">${s.name}</td>
+          <td contenteditable="true" onblur="updateStudentInlineField(${s.id}, 'phone', this.innerText)" onclick="event.stopPropagation()">${s.phone}</td>
+          <td contenteditable="true" onblur="updateStudentInlineField(${s.id}, 'email', this.innerText)" onclick="event.stopPropagation()">${s.email}</td>
+          <td>
+            <select onchange="updateStudentInlineField(${s.id}, 'course', this.value)" onclick="event.stopPropagation()" style="background: transparent; color: #1a1a1a; border: none; font-size: 0.9rem; font-family: var(--font-body); font-weight: 500;">
+              ${getCoursesDB().map(c => `<option value="${c.name}" ${c.name === s.course ? 'selected' : ''}>${c.name}</option>`).join('')}
+            </select>
+          </td>
+          <td contenteditable="true" onblur="updateStudentInlineField(${s.id}, 'downPayment', this.innerText)" onclick="event.stopPropagation()" style="font-family: var(--font-mono);">₹${s.downPayment}</td>
+          <td>
+            <select onchange="updateStudentInlineField(${s.id}, 'paymentStatus', this.value)" onclick="event.stopPropagation()" style="background: transparent; border: 1.5px solid #1a1a1a; border-radius:4px; font-weight:bold; font-size: 0.75rem;" class="status-badge ${statusClass}">
+              <option value="Paid" ${s.paymentStatus === "Paid" ? 'selected' : ''} style="background: #fff; color: #155724;">Paid</option>
+              <option value="Partial" ${s.paymentStatus === "Partial" ? 'selected' : ''} style="background: #fff; color: #856404;">Partial</option>
+              <option value="Pending" ${s.paymentStatus === "Pending" ? 'selected' : ''} style="background: #fff; color: #721c24;">Pending</option>
+            </select>
+          </td>
+          <td contenteditable="true" onblur="updateStudentInlineField(${s.id}, 'enrollmentDate', this.innerText)" onclick="event.stopPropagation()">${s.enrollmentDate}</td>
+          <td contenteditable="true" onblur="updateStudentInlineField(${s.id}, 'notes', this.innerText)" onclick="event.stopPropagation()" style="color: var(--text-muted); max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${s.notes}</td>
+          <td style="text-align: center;">
+            <button class="admin-btn admin-btn-danger" onclick="deleteStudent(${s.id}, event)" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;"><i class="fa-solid fa-trash"></i></button>
+          </td>
+        `;
+
+        tbody.appendChild(tr);
+      });
+
+      if (!selectedStudentIdForAnalysis && filtered.length > 0) {
+        selectStudentForAnalysis(filtered[0].id);
+      }
+    }
+
+    function selectStudentForAnalysis(studentId, event) {
+      selectedStudentIdForAnalysis = studentId;
+      
+      const rows = document.querySelectorAll("#admin-students-tbody tr");
+      rows.forEach(r => {
+        r.style.background = "transparent";
+      });
+
+      if (event && event.currentTarget) {
+        event.currentTarget.style.background = "rgba(0, 0, 0, 0.04)";
+      }
+
+      renderStudentDetailsCard(studentId);
+    }
+
+    function renderStudentDetailsCard(studentId) {
+      const container = document.getElementById("student-stats-display-card");
+      const students = getStudentsDB();
+      const student = students.find(s => s.id === studentId);
+
+      if (!student) {
+        container.innerHTML = `
+          <h3>Academy Assessment</h3>
+          <p style="color: var(--text-muted); text-align: center; font-size: 0.95rem;">Select a student from the table list to inspect scorecard analytics.</p>
+        `;
+        return;
+      }
+
+      const chartVals = student.chartData || [60, 70, 80, 90];
+
+      container.innerHTML = `
+        <h3>Student Analytics</h3>
+        
+        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+          <div style="width: 45px; height: 45px; border-radius: 50%; border: 2px solid #1a1a1a; background: var(--yellow-highlight); color: #1a1a1a; font-weight: 700; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; text-transform: uppercase;">
+            ${student.name.substring(0, 2)}
+          </div>
+          <div>
+            <h4 style="color: #1a1a1a; font-size: 1.1rem; font-family: var(--font-display); font-weight:700;">${student.name}</h4>
+            <p style="font-size: 0.75rem; color: var(--secondary-accent); font-weight: bold; text-transform: uppercase;">${student.course}</p>
+          </div>
+        </div>
+
+        <div class="stat-row">
+          <span class="stat-label">Performance Index</span>
+          <span class="stat-val stat-val-highlight">${student.performance || 80}/100</span>
+        </div>
+
+        <div class="stat-row">
+          <span class="stat-label">Class Attendance</span>
+          <span class="stat-val" style="color: #28a745;">${student.attendance || 90}%</span>
+        </div>
+
+        <div class="stat-row">
+          <span class="stat-label">Fee Breakdown</span>
+          <span class="stat-val" style="font-size: 0.85rem;">Paid: ₹${student.downPayment} / Total: ₹${student.totalFee || 10000}</span>
+        </div>
+
+        <div class="chart-container">
+          <h4 class="chart-title">Subject Assessment (Weekly)</h4>
+          <div class="chart-bars">
+            <div class="chart-bar-wrap">
+              <div class="chart-bar" style="height: ${chartVals[0]}%" data-val="${chartVals[0]}"></div>
+              <span class="chart-label">W1</span>
+            </div>
+            <div class="chart-bar-wrap">
+              <div class="chart-bar" style="height: ${chartVals[1]}%" data-val="${chartVals[1]}"></div>
+              <span class="chart-label">W2</span>
+            </div>
+            <div class="chart-bar-wrap">
+              <div class="chart-bar" style="height: ${chartVals[2]}%" data-val="${chartVals[2]}"></div>
+              <span class="chart-label">W3</span>
+            </div>
+            <div class="chart-bar-wrap">
+              <div class="chart-bar" style="height: ${chartVals[3]}%" data-val="${chartVals[3]}"></div>
+              <span class="chart-label">W4</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top: 1.5rem; text-align: center;">
+          <button class="admin-btn" onclick="openEditStudentModal(${student.id})" style="width: 100%; justify-content: center;"><i class="fa-solid fa-pen-to-square"></i> Modify Analytics Parameters</button>
+        </div>
+      `;
+    }
+
+    function updateStudentInlineField(studentId, field, value) {
+      let students = getStudentsDB();
+      let val = value.trim();
+
+      if (field === "downPayment") {
+        val = val.replace("₹", "").trim();
+        val = parseFloat(val) || 0;
+      }
+
+      students = students.map(s => {
+        if (s.id === studentId) {
+          const updated = { ...s, [field]: val };
+          if (field === "downPayment" && updated.downPayment >= updated.totalFee) {
+            updated.paymentStatus = "Paid";
+          }
+          return updated;
+        }
+        return s;
+      });
+
+      setStudentsDB(students);
+      showToast("Student database updated inline.");
+      renderStudentsTable();
+      renderPaymentsLedger();
+    }
+
+    function openAddStudentModal() {
+      document.getElementById("form-student").reset();
+      document.getElementById("student-form-id").value = "";
+      document.getElementById("modal-student-title").textContent = "Enroll Student Profile";
+      
+      populateStudentFormCourseDropdowns();
+      openAdminModal("modal-student");
+    }
+
+    function openEditStudentModal(id) {
+      const students = getStudentsDB();
+      const s = students.find(item => item.id === id);
+      if (!s) return;
+
+      populateStudentFormCourseDropdowns();
+
+      document.getElementById("student-form-id").value = s.id;
+      document.getElementById("student-form-name").value = s.name;
+      document.getElementById("student-form-phone").value = s.phone;
+      document.getElementById("student-form-email").value = s.email;
+      document.getElementById("student-form-course").value = s.course;
+      document.getElementById("student-form-downpayment").value = s.downPayment;
+      document.getElementById("student-form-totalfee").value = s.totalFee || 10000;
+      document.getElementById("student-form-status").value = s.paymentStatus;
+      document.getElementById("student-form-performance").value = s.performance || 80;
+      document.getElementById("student-form-attendance").value = s.attendance || 90;
+      document.getElementById("student-form-notes").value = s.notes || "";
+
+      document.getElementById("modal-student-title").textContent = "Modify Analytics Parameters";
+      openAdminModal("modal-student");
+    }
+
+    function saveStudentForm(e) {
+      e.preventDefault();
+      const id = document.getElementById("student-form-id").value;
+      const name = document.getElementById("student-form-name").value;
+      const phone = document.getElementById("student-form-phone").value;
+      const email = document.getElementById("student-form-email").value;
+      const course = document.getElementById("student-form-course").value;
+      const downPayment = parseFloat(document.getElementById("student-form-downpayment").value) || 0;
+      const totalFee = parseFloat(document.getElementById("student-form-totalfee").value) || 10000;
+      const paymentStatus = document.getElementById("student-form-status").value;
+      const performance = parseInt(document.getElementById("student-form-performance").value) || 80;
+      const attendance = parseInt(document.getElementById("student-form-attendance").value) || 95;
+      const notes = document.getElementById("student-form-notes").value;
+
+      let students = getStudentsDB();
+
+      const randomCharts = [
+        Math.floor(Math.random() * 30) + 60,
+        Math.floor(Math.random() * 20) + 75,
+        Math.floor(Math.random() * 15) + 80,
+        performance
+      ];
+
+      if (id) {
+        students = students.map(s => s.id == id ? { 
+          ...s, name, phone, email, course, downPayment, totalFee, paymentStatus, performance, attendance, notes 
+        } : s);
+        showToast("Student profile parameters saved.");
+      } else {
+        students.push({
+          id: Date.now(),
+          name, phone, email, course, downPayment, totalFee, paymentStatus, 
+          enrollmentDate: new Date().toISOString().split('T')[0],
+          notes, performance, attendance, chartData: randomCharts
+        });
+        showToast("New Student Profile registered.");
+      }
+
+      setStudentsDB(students);
+      closeAdminModal("modal-student");
+      renderStudentsTable();
+      renderPaymentsLedger();
+    }
+
+    function deleteStudent(id, event) {
+      if (event) event.stopPropagation();
+      if (!confirm("Are you sure you want to delete this student record?")) return;
+
+      let students = getStudentsDB();
+      students = students.filter(s => s.id !== id);
+      setStudentsDB(students);
+
+      if (selectedStudentIdForAnalysis === id) {
+        selectedStudentIdForAnalysis = null;
+      }
+
+      showToast("Student record deleted", "error");
+      renderStudentsTable();
+      renderPaymentsLedger();
+    }
+
+
+    // --- TAB 5: STAFF MANAGER CRUD ---
+    function renderStaffCards() {
+      const container = document.getElementById("admin-staff-grid-container");
+      const staff = getStaffDB();
+      container.innerHTML = "";
+
+      if (staff.length === 0) {
+        container.innerHTML = `
+          <div style="grid-column: span 3; text-align: center; color: var(--text-muted); padding: 3rem;">
+            <p>No staff directory records. Register instructors above.</p>
+          </div>
+        `;
+        return;
+      }
+
+      staff.forEach(s => {
+        const card = document.createElement("div");
+        card.className = "staff-card";
+
+        const initials = s.name.split(" ").map(n => n[0]).join("").substring(0, 2);
+
+        card.innerHTML = `
+          <div class="staff-avatar">${initials}</div>
+          <h3 class="staff-name">${s.name}</h3>
+          <p class="staff-role">${s.role}</p>
+          <div class="staff-contact">
+            <p><i class="fa-solid fa-phone"></i> ${s.phone}</p>
+            <p><i class="fa-solid fa-envelope"></i> ${s.email}</p>
+          </div>
+          <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem;">Dept: ${s.dept}</p>
+          <div class="staff-status">
+            <span class="status-badge ${s.status === 'Active' ? 'status-active' : 'status-inactive'}">${s.status}</span>
+          </div>
+          <div class="staff-card-actions">
+            <button class="admin-btn" onclick="openEditStaffModal(${s.id})" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;"><i class="fa-solid fa-pen"></i></button>
+            <button class="admin-btn admin-btn-danger" onclick="deleteStaff(${s.id})" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;"><i class="fa-solid fa-trash"></i></button>
+          </div>
+        `;
+
+        container.appendChild(card);
+      });
+    }
+
+    function openAddStaffModal() {
+      document.getElementById("form-staff").reset();
+      document.getElementById("staff-form-id").value = "";
+      document.getElementById("modal-staff-title").textContent = "Add Staff Profile";
+      openAdminModal("modal-staff");
+    }
+
+    function openEditStaffModal(id) {
+      const staffList = getStaffDB();
+      const s = staffList.find(item => item.id === id);
+      if (!s) return;
+
+      document.getElementById("staff-form-id").value = s.id;
+      document.getElementById("staff-form-name").value = s.name;
+      document.getElementById("staff-form-role").value = s.role;
+      document.getElementById("staff-form-phone").value = s.phone;
+      document.getElementById("staff-form-email").value = s.email;
+      document.getElementById("staff-form-dept").value = s.dept;
+      document.getElementById("staff-form-joindate").value = s.joinDate;
+      document.getElementById("staff-form-status").value = s.status;
+
+      document.getElementById("modal-staff-title").textContent = "Modify Staff Profile";
+      openAdminModal("modal-staff");
+    }
+
+    function saveStaffForm(e) {
+      e.preventDefault();
+      const id = document.getElementById("staff-form-id").value;
+      const name = document.getElementById("staff-form-name").value;
+      const role = document.getElementById("staff-form-role").value;
+      const phone = document.getElementById("staff-form-phone").value;
+      const email = document.getElementById("staff-form-email").value;
+      const dept = document.getElementById("staff-form-dept").value;
+      const joinDate = document.getElementById("staff-form-joindate").value;
+      const status = document.getElementById("staff-form-status").value;
+
+      let staffList = getStaffDB();
+
+      if (id) {
+        staffList = staffList.map(s => s.id == id ? { ...s, name, role, phone, email, dept, joinDate, status } : s);
+        showToast("Staff profile saved.");
+      } else {
+        staffList.push({ id: Date.now(), name, role, phone, email, dept, joinDate, status });
+        showToast("New Staff Directory record registered.");
+      }
+
+      setStaffDB(staffList);
+      closeAdminModal("modal-staff");
+      renderStaffCards();
+    }
+
+    function deleteStaff(id) {
+      if (!confirm("Are you sure you want to delete this staff record?")) return;
+      let staffList = getStaffDB();
+      staffList = staffList.filter(s => s.id !== id);
+      setStaffDB(staffList);
+
+      showToast("Staff record deleted", "error");
+      renderStaffCards();
+    }
+
+
+    // --- TAB 6: PAYMENTS LEDGER ---
+    function renderPaymentsLedger() {
+      const tbody = document.getElementById("admin-payments-tbody");
+      const students = getStudentsDB();
+      tbody.innerHTML = "";
+
+      let totalCollected = 0;
+      let totalPending = 0;
+
+      students.forEach(s => {
+        const collected = parseFloat(s.downPayment) || 0;
+        const total = parseFloat(s.totalFee) || 10000;
+        const pending = Math.max(0, total - collected);
+
+        totalCollected += collected;
+        
+        if (s.paymentStatus !== "Paid") {
+          totalPending += pending;
+        }
+
+        let statusClass = "status-pending";
+        if (s.paymentStatus === "Paid") statusClass = "status-paid";
+        if (s.paymentStatus === "Partial") statusClass = "status-partial";
+
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td style="font-weight: bold;">${s.name}</td>
+          <td style="color: var(--secondary-accent); font-weight: 500;">${s.course}</td>
+          <td style="font-family: var(--font-mono);">${s.enrollmentDate}</td>
+          <td style="font-family: var(--font-mono); font-weight:bold;">₹${collected}</td>
+          <td style="font-family: var(--font-mono); color: ${pending > 0 ? 'var(--secondary-accent)' : 'var(--text-muted)'};">₹${pending}</td>
+          <td><span class="status-badge ${statusClass}">${s.paymentStatus}</span></td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      document.getElementById("ledger-total-collected").textContent = `₹${totalCollected.toLocaleString('en-IN')}`;
+      document.getElementById("ledger-total-pending").textContent = `₹${totalPending.toLocaleString('en-IN')}`;
+      document.getElementById("ledger-student-count").textContent = students.length;
+    }
+
+
+    // --- TAB 7: GALLERY MANAGER ---
+    function renderAdminGallery() {
+      const tbody = document.getElementById("admin-gallery-tbody");
+      const gallery = getGalleryDB();
+      tbody.innerHTML = "";
+
+      const gradientPool = [
+        "linear-gradient(45deg, #ffffff, #f0eee8)",
+        "linear-gradient(45deg, #ffffff, #e6f7ff)",
+        "linear-gradient(45deg, #ffffff, #fffbe6)",
+        "linear-gradient(45deg, #ffffff, #f6ffed)"
+      ];
+
+      gallery.forEach((img, idx) => {
+        const tr = document.createElement("tr");
+
+        let previewHTML = "";
+        if (img.url && img.url.trim() !== "") {
+          previewHTML = `<img src="${img.url}" style="width:70px; height:50px; object-fit:cover; border: 2px solid #1a1a1a; border-radius:4px;">`;
+        } else {
+          const grad = gradientPool[idx % gradientPool.length];
+          previewHTML = `<div style="width:70px; height:50px; background:${grad}; border: 1.5px solid #1a1a1a; border-radius:4px; font-size: 0.55rem; display:flex; align-items:center; justify-content:center; text-align:center; color:#1a1a1a; font-weight:bold; padding:2px;">${img.title.substring(0, 8)}</div>`;
+        }
+
+        tr.innerHTML = `
+          <td style="text-align: center; vertical-align: middle;">${previewHTML}</td>
+          <td style="font-weight: bold;">${img.title}</td>
+          <td style="font-family: var(--font-mono); color: var(--text-muted); max-width: 300px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+            ${img.url || "Modern Gradient (Auto-rendered)"}
+          </td>
+          <td style="text-align: center;">
+            <button class="admin-btn" onclick="openEditGalleryModal(${img.id})" style="padding: 0.3rem 0.6rem; font-size: 0.8rem; margin-right: 0.3rem;"><i class="fa-solid fa-pen"></i></button>
+            <button class="admin-btn admin-btn-danger" onclick="deleteGallery(${img.id})" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;"><i class="fa-solid fa-trash"></i></button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function openAddGalleryModal() {
+      document.getElementById("form-gallery").reset();
+      document.getElementById("gallery-form-id").value = "";
+      document.getElementById("modal-gallery-preview-box").innerHTML = "<span>No Image</span>";
+      document.getElementById("modal-gallery-title").textContent = "Add Gallery Photo";
+      openAdminModal("modal-gallery");
+    }
+
+    function openEditGalleryModal(id) {
+      const gallery = getGalleryDB();
+      const img = gallery.find(item => item.id === id);
+      if (!img) return;
+
+      document.getElementById("gallery-form-id").value = img.id;
+      document.getElementById("gallery-form-title").value = img.title;
+      document.getElementById("gallery-form-url").value = img.url;
+      
+      updateModalGalleryPreview(img.url);
+
+      document.getElementById("modal-gallery-title").textContent = "Modify Gallery Photo Details";
+      openAdminModal("modal-gallery");
+    }
+
+    function updateModalGalleryPreview(url) {
+      const box = document.getElementById("modal-gallery-preview-box");
+      if (url && url.trim() !== "") {
+        box.innerHTML = `<img src="${url}" style="width:100%; height:100%; object-fit:cover;">`;
+      } else {
+        box.innerHTML = "<span>No Image</span>";
+      }
+    }
+
+    function saveGalleryForm(e) {
+      e.preventDefault();
+      const id = document.getElementById("gallery-form-id").value;
+      const title = document.getElementById("gallery-form-title").value;
+      const url = document.getElementById("gallery-form-url").value;
+
+      let gallery = getGalleryDB();
+
+      if (id) {
+        gallery = gallery.map(g => g.id == id ? { ...g, title, url } : g);
+        showToast("Gallery tile details saved.");
+      } else {
+        gallery.push({ id: Date.now(), title, url });
+        showToast("New image slot integrated into public gallery.");
+      }
+
+      setGalleryDB(gallery);
+      closeAdminModal("modal-gallery");
+      renderAdminGallery();
+      renderPublicGallery();
+    }
+
+    function deleteGallery(id) {
+      if (!confirm("Are you sure you want to remove this image slot?")) return;
+      let gallery = getGalleryDB();
+      gallery = gallery.filter(g => g.id !== id);
+      setGalleryDB(gallery);
+
+      showToast("Gallery slot deleted", "error");
+      renderAdminGallery();
+      renderPublicGallery();
+    }
+
+
+    // --- TAB 8: QUIZ BANK MANAGER ---
+    function renderAdminQuizTable() {
+      const tbody = document.getElementById("admin-quiz-tbody");
+      const quiz = getQuizDB();
+      tbody.innerHTML = "";
+
+      quiz.forEach(q => {
+        const tr = document.createElement("tr");
+        const correctText = q.choices[q.correct] || `Option ${q.correct}`;
+
+        const tdQuestion = document.createElement("td");
+        tdQuestion.style.fontWeight = "bold";
+        tdQuestion.style.color = "#1a1a1a";
+        tdQuestion.textContent = q.question;
+
+        const tdCategory = document.createElement("td");
+        const badge = document.createElement("span");
+        badge.className = "status-badge status-active";
+        badge.textContent = q.category || "General";
+        tdCategory.appendChild(badge);
+
+        const tdCorrect = document.createElement("td");
+        tdCorrect.style.color = "#28a745";
+        tdCorrect.style.fontWeight = "bold";
+        tdCorrect.textContent = correctText;
+
+        const tdActions = document.createElement("td");
+        tdActions.style.textAlign = "center";
+        tdActions.innerHTML = `
+          <button class="admin-btn" onclick="openEditQuestionModal(${q.id})" style="padding: 0.3rem 0.6rem; font-size: 0.8rem; margin-right: 0.3rem;"><i class="fa-solid fa-pen"></i></button>
+          <button class="admin-btn admin-btn-danger" onclick="deleteQuestion(${q.id})" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;"><i class="fa-solid fa-trash"></i></button>
+        `;
+
+        tr.appendChild(tdQuestion);
+        tr.appendChild(tdCategory);
+        tr.appendChild(tdCorrect);
+        tr.appendChild(tdActions);
+        tbody.appendChild(tr);
+      });
+    }
+
+    function openAddQuestionModal() {
+      document.getElementById("form-question").reset();
+      document.getElementById("question-form-id").value = "";
+      document.getElementById("modal-question-title").textContent = "Add Quiz Question";
+      openAdminModal("modal-question");
+    }
+
+    function openEditQuestionModal(id) {
+      const quiz = getQuizDB();
+      const q = quiz.find(item => item.id === id);
+      if (!q) return;
+
+      document.getElementById("question-form-id").value = q.id;
+      document.getElementById("question-form-title").value = q.question;
+      document.getElementById("question-form-category").value = q.category || "General Tech";
+      
+      document.getElementById("question-form-opt-0").value = q.choices[0] || "";
+      document.getElementById("question-form-opt-1").value = q.choices[1] || "";
+      document.getElementById("question-form-opt-2").value = q.choices[2] || "";
+      document.getElementById("question-form-opt-3").value = q.choices[3] || "";
+      
+      document.getElementById("question-form-correct").value = q.correct;
+
+      document.getElementById("modal-question-title").textContent = "Modify Quiz Question Details";
+      openAdminModal("modal-question");
+    }
+
+    function saveQuestionForm(e) {
+      e.preventDefault();
+      const id = document.getElementById("question-form-id").value;
+      const question = document.getElementById("question-form-title").value;
+      const category = document.getElementById("question-form-category").value;
+      
+      const choices = [
+        document.getElementById("question-form-opt-0").value,
+        document.getElementById("question-form-opt-1").value,
+        document.getElementById("question-form-opt-2").value,
+        document.getElementById("question-form-opt-3").value
+      ];
+
+      const correct = parseInt(document.getElementById("question-form-correct").value);
+
+      let quiz = getQuizDB();
+
+      if (id) {
+        quiz = quiz.map(q => q.id == id ? { ...q, question, category, choices, correct } : q);
+        showToast("Quiz question modified.");
+      } else {
+        quiz.push({ id: Date.now(), question, category, choices, correct });
+        showToast("New question added to database pool.");
+      }
+
+      setQuizDB(quiz);
+      closeAdminModal("modal-question");
+      renderAdminQuizTable();
+    }
+
+    function deleteQuestion(id) {
+      if (!confirm("Are you sure you want to delete this question?")) return;
+      let quiz = getQuizDB();
+      quiz = quiz.filter(q => q.id !== id);
+      setQuizDB(quiz);
+
+      showToast("Question deleted", "error");
+      renderAdminQuizTable();
+    }
+
+    // --- TAB 9: DAILY ATTENDANCE SYSTEM ---
+    let currentAttendanceLog = {};
+
+    function populateAttendanceCourseDropdown() {
+      const filterSelect = document.getElementById("attendance-filter-course");
+      const courses = getCoursesDB();
+      filterSelect.innerHTML = '<option value="">All Courses</option>';
+      courses.forEach(c => {
+        const opt = document.createElement("option");
+        opt.value = c.name;
+        opt.textContent = c.name;
+        filterSelect.appendChild(opt);
+      });
+    }
+
+    function loadDailyAttendance() {
+      const dateSelect = document.getElementById("attendance-date-select");
+      const date = dateSelect.value;
+      if (!date) return;
+
+      const holidays = getHolidaysDB();
+      const holiday = holidays.find(h => h.date === date);
+      const notice = document.getElementById("attendance-holiday-notice");
+      const nameSpan = document.getElementById("attendance-holiday-name");
+      const saveBtn = document.getElementById("save-attendance-btn");
+
+      if (holiday) {
+        notice.style.display = "block";
+        nameSpan.textContent = holiday.name;
+        saveBtn.disabled = true;
+      } else {
+        notice.style.display = "none";
+        saveBtn.disabled = false;
+      }
+
+      const attendanceDB = getAttendanceDB();
+      currentAttendanceLog = attendanceDB[date] || {};
+
+      renderAttendanceSheetTable();
+    }
+
+    function renderAttendanceSheetTable() {
+      const tbody = document.getElementById("admin-attendance-tbody");
+      const students = getStudentsDB();
+      const filterCourse = document.getElementById("attendance-filter-course").value;
+      
+      tbody.innerHTML = "";
+
+      const filtered = students.filter(s => filterCourse === "" ? true : s.course === filterCourse);
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="3" style="text-align: center; color: var(--text-muted); padding: 1.5rem;">No students found matching current filters</td></tr>`;
+        return;
+      }
+
+      filtered.forEach(s => {
+        const status = currentAttendanceLog[s.id] || "Present";
+        
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td style="font-weight: bold;">${s.name}</td>
+          <td style="color: var(--secondary-accent); font-weight: 500;">${s.course}</td>
+          <td style="text-align: center;">
+            <select onchange="toggleStudentAttendance(${s.id}, this.value)" style="background: #ffffff; border: 2px solid #1a1a1a; padding: 0.35rem 0.8rem; border-radius: 4px; font-weight: bold; font-family: var(--font-body); font-size: 0.85rem; box-shadow: var(--sketch-shadow-sm); cursor: pointer; outline: none;">
+              <option value="Present" ${status === 'Present' ? 'selected' : ''}>Present</option>
+              <option value="Absent" ${status === 'Absent' ? 'selected' : ''}>Absent</option>
+              <option value="Late" ${status === 'Late' ? 'selected' : ''}>Late</option>
+            </select>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function toggleStudentAttendance(studentId, status) {
+      currentAttendanceLog[studentId] = status;
+      renderAttendanceSheetTable();
+    }
+
+    function markAllAttendance(status) {
+      const students = getStudentsDB();
+      const filterCourse = document.getElementById("attendance-filter-course").value;
+      
+      students.forEach(s => {
+        if (filterCourse === "" || s.course === filterCourse) {
+          currentAttendanceLog[s.id] = status;
+        }
+      });
+      
+      renderAttendanceSheetTable();
+      showToast(`Marked all matching students as ${status}`);
+    }
+
+    function saveDailyAttendance() {
+      const dateSelect = document.getElementById("attendance-date-select");
+      const date = dateSelect.value;
+      if (!date) return;
+
+      const holidays = getHolidaysDB();
+      if (holidays.find(h => h.date === date)) {
+        showToast("Cannot log attendance on scheduled holiday!", "error");
+        return;
+      }
+
+      const attendanceDB = getAttendanceDB();
+      attendanceDB[date] = currentAttendanceLog;
+      setAttendanceDB(attendanceDB);
+
+      recalculateAllStudentsAttendancePercent();
+      showToast(`Attendance logs saved for ${date}`);
+    }
+
+    function recalculateAllStudentsAttendancePercent() {
+      const students = getStudentsDB();
+      const attendanceDB = getAttendanceDB();
+
+      const updatedStudents = students.map(s => {
+        let totalDays = 0;
+        let presentDays = 0;
+        let lateDays = 0;
+
+        Object.keys(attendanceDB).forEach(date => {
+          const dateLog = attendanceDB[date];
+          if (dateLog && dateLog[s.id]) {
+            totalDays++;
+            const status = dateLog[s.id];
+            if (status === "Present") presentDays++;
+            if (status === "Late") lateDays++;
+          }
+        });
+
+        if (totalDays > 0) {
+          const pct = Math.round(((presentDays + (lateDays * 0.5)) / totalDays) * 100);
+          
+          const newChartData = [...(s.chartData || [80, 80, 80, 80])];
+          newChartData.push(pct);
+          if (newChartData.length > 4) newChartData.shift();
+
+          return { ...s, attendance: pct, chartData: newChartData };
+        }
+
+        return s;
+      });
+
+      setStudentsDB(updatedStudents);
+      renderStudentsTable();
+      renderPaymentsLedger();
+    }
+
+
+    // --- TAB 10: HOLIDAYS CALENDAR CRUD ---
+    let holidayCalendarCurrentDate = new Date();
+    let isHolidayCalendarListView = false;
+
+    function renderAdminHolidays() {
+      // 1. Render List View Table
+      const tbody = document.getElementById("admin-holidays-tbody");
+      const holidays = getHolidaysDB();
+      tbody.innerHTML = "";
+
+      const sorted = [...holidays].sort((a, b) => new Date(a.date) - new Date(b.date));
+
+      if (sorted.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="4" style="text-align: center; color: var(--text-muted); padding: 1.5rem;">No holidays registered in database.</td></tr>`;
+      } else {
+        sorted.forEach(h => {
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
+            <td style="font-family: var(--font-mono); font-weight: bold;">${h.date}</td>
+            <td style="font-weight: bold;">${h.name}</td>
+            <td><span class="status-badge status-partial">${h.category || "National"}</span></td>
+            <td style="text-align: center;">
+              <button class="admin-btn" onclick="openEditHolidayModal(${h.id})" style="padding: 0.3rem 0.6rem; font-size: 0.8rem; margin-right: 0.3rem;"><i class="fa-solid fa-pen"></i></button>
+              <button class="admin-btn admin-btn-danger" onclick="deleteHoliday(${h.id})" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;"><i class="fa-solid fa-trash"></i></button>
+            </td>
+          `;
+          tbody.appendChild(tr);
+        });
+      }
+
+      // 2. Render Visual Calendar Grid
+      renderHolidayCalendarGrid();
+    }
+
+    function toggleHolidayView() {
+      const calendarView = document.getElementById("holiday-calendar-view");
+      const listView = document.getElementById("holiday-list-view");
+      const toggleBtn = document.getElementById("toggle-holiday-view-btn");
+
+      isHolidayCalendarListView = !isHolidayCalendarListView;
+
+      if (isHolidayCalendarListView) {
+        calendarView.style.display = "none";
+        listView.style.display = "block";
+        toggleBtn.innerHTML = `<i class="fa-solid fa-calendar-days"></i> Switch to Calendar View`;
+      } else {
+        calendarView.style.display = "block";
+        listView.style.display = "none";
+        toggleBtn.innerHTML = `<i class="fa-solid fa-list"></i> Switch to List View`;
+      }
+    }
+
+    function changeHolidayMonth(dir) {
+      holidayCalendarCurrentDate.setMonth(holidayCalendarCurrentDate.getMonth() + dir);
+      renderHolidayCalendarGrid();
+    }
+
+    function renderHolidayCalendarGrid() {
+      const grid = document.getElementById("holiday-calendar-days-grid");
+      const monthYearTitle = document.getElementById("holiday-calendar-month-year");
+      if (!grid || !monthYearTitle) return;
+
+      const year = holidayCalendarCurrentDate.getFullYear();
+      const month = holidayCalendarCurrentDate.getMonth();
+
+      const monthNames = [
+        "January", "February", "March", "April", "May", "June", 
+        "July", "August", "September", "October", "November", "December"
+      ];
+      monthYearTitle.textContent = `${monthNames[month]} ${year}`;
+
+      grid.innerHTML = "";
+
+      const firstDayIdx = new Date(year, month, 1).getDay();
+      const totalDays = new Date(year, month + 1, 0).getDate();
+      const prevMonthTotalDays = new Date(year, month, 0).getDate();
+
+      const holidays = getHolidaysDB();
+
+      // Render previous month's overlapping days
+      for (let i = firstDayIdx - 1; i >= 0; i--) {
+        const cell = document.createElement("div");
+        cell.className = "calendar-day-cell other-month";
+        cell.innerHTML = `<span class="calendar-day-number">${prevMonthTotalDays - i}</span>`;
+        grid.appendChild(cell);
+      }
+
+      // Render current month's days
+      for (let day = 1; day <= totalDays; day++) {
+        const cell = document.createElement("div");
+        cell.className = "calendar-day-cell";
+        
+        const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+        const dayHoliday = holidays.find(h => h.date === dateStr);
+
+        let cellHTML = `<span class="calendar-day-number">${day}</span>`;
+        
+        if (dayHoliday) {
+          cell.classList.add("is-holiday");
+          cellHTML += `<span class="calendar-holiday-label" title="${dayHoliday.name}">${dayHoliday.name}</span>`;
+          cell.setAttribute("onclick", `openEditHolidayModal(${dayHoliday.id})`);
+        } else {
+          cell.setAttribute("onclick", `openAddHolidayModalWithDate('${dateStr}')`);
+        }
+
+        cell.innerHTML = cellHTML;
+        grid.appendChild(cell);
+      }
+
+      // Render next month's overlapping days
+      const currentCellCount = firstDayIdx + totalDays;
+      const remainingCells = 42 - currentCellCount;
+      for (let i = 1; i <= remainingCells; i++) {
+        const cell = document.createElement("div");
+        cell.className = "calendar-day-cell other-month";
+        cell.innerHTML = `<span class="calendar-day-number">${i}</span>`;
+        grid.appendChild(cell);
+      }
+    }
+
+    function openAddHolidayModalWithDate(dateStr) {
+      openAddHolidayModal();
+      document.getElementById("holiday-form-date").value = dateStr;
+    }
+
+    function openAddHolidayModal() {
+      document.getElementById("form-holiday").reset();
+      document.getElementById("holiday-form-id").value = "";
+      document.getElementById("modal-holiday-title").textContent = "Add Academic Holiday";
+      openAdminModal("modal-holiday");
+    }
+
+    function openEditHolidayModal(id) {
+      const holidays = getHolidaysDB();
+      const h = holidays.find(item => item.id === id);
+      if (!h) return;
+
+      document.getElementById("holiday-form-id").value = h.id;
+      document.getElementById("holiday-form-date").value = h.date;
+      document.getElementById("holiday-form-name").value = h.name;
+      document.getElementById("holiday-form-category").value = h.category || "National";
+      
+      document.getElementById("modal-holiday-title").textContent = "Modify Academic Holiday";
+      openAdminModal("modal-holiday");
+    }
+
+    function saveHolidayForm(e) {
+      e.preventDefault();
+      const id = document.getElementById("holiday-form-id").value;
+      const date = document.getElementById("holiday-form-date").value;
+      const name = document.getElementById("holiday-form-name").value;
+      const category = document.getElementById("holiday-form-category").value;
+
+      let holidays = getHolidaysDB();
+
+      if (id) {
+        holidays = holidays.map(h => h.id == id ? { ...h, date, name, category } : h);
+        showToast("Holiday information saved.");
+      } else {
+        holidays.push({ id: Date.now(), date, name, category });
+        showToast("New Academic Holiday registered.");
+      }
+
+      setHolidaysDB(holidays);
+      closeAdminModal("modal-holiday");
+      renderAdminHolidays();
+      loadDailyAttendance();
+    }
+
+    function deleteHoliday(id) {
+      if (!confirm("Are you sure you want to delete this holiday record?")) return;
+      let holidays = getHolidaysDB();
+      holidays = holidays.filter(h => h.id !== id);
+      setHolidaysDB(holidays);
+
+      showToast("Holiday deleted", "error");
+      renderAdminHolidays();
+      loadDailyAttendance();
+    }
+
+    function openAdminModal(modalId) {
+      document.getElementById(modalId).classList.add("active");
+    }
+
+    function closeAdminModal(modalId) {
+      document.getElementById(modalId).classList.remove("active");
+    }
+  </script>
+</body>
+</html>
